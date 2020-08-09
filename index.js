@@ -21,9 +21,12 @@ const campgroundRoutes = require("./routes/campgrounds"),
   indexRoutes = require("./routes/index");
 const { resolveInclude } = require("ejs");
 
+if (!process.env.DATABASE_URL) {
+  throw new Error("process.env.DATABASE_URL is not defined. Aborting");
+}
 // Connect (or create new DB) for mongoose to interact with MongoDB
 mongoose
-  .connect("mongodb://localhost:27017/camp_wi", {
+  .connect(process.env.DATABASE_URL, {
     // need to use the localhost port of 27017 since our local instance of Mongo runs/listens here
     useNewUrlParser: true,
     useUnifiedTopology: true,
