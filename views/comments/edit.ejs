@@ -1,6 +1,6 @@
 <%- include("../partials/header") %>
 
-<div class="row">
+<div class="row comment-edit-first-row">
     <h1 style="text-align: center; margin: 20px;">Edit Your Comment on <strong><%= campground_name %></strong></h1>
     <div style="width: 30%; margin: 0 auto;"">
             <form action=" /campgrounds/<%= campground_id %>/comments/<%= comment._id %>?_method=PUT" method="POST">

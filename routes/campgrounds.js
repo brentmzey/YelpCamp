@@ -103,8 +103,8 @@ router.get("/:id", (req, res) => {
 // EDIT CAMPGROUND ROUTE
 router.get("/:id/edit", middleware.checkCampgroundOwnership, (req, res) => {
   Campground.findById(req.params.id, (err, foundCampground) => {
-    if (err) {
-      req.flash("error", "Uhrmmm, we could not find that campground... :/");
+    if (err || !foundCampground) {
+      req.flash("error", "Uhrmmm, we could not find that campground... <i class='fas fa-sad-cry'></i>");
       return res.redirect("/campgrounds/" + req.params.id);
     }
     res.render("campgrounds/edit", { campground: foundCampground });
@@ -115,7 +115,7 @@ router.get("/:id/edit", middleware.checkCampgroundOwnership, (req, res) => {
 router.put("/:id", middleware.checkCampgroundOwnership, (req, res) => {
   // Find and update the correct campground
   Campground.findOneAndUpdate({ _id: req.params.id }, req.body.campground, (err, updatedCampground) => {
-    if (err) {
+    if (err || !updatedCampground) {
       req.flash("error", "Uhrmmm, we could not find that campground.");
       res.redirect("back");
     } else {

@@ -1,0 +1,50 @@
+<%- include("../partials/header") %>
+
+<div class="container-fluid user-profile-top">
+    <div class="row user-profile-first-row">
+
+        <div class="container mx-2">
+            <div class="col-xs-12 col-sm-10 col-md-3">
+                <div class="thumbnail">
+                    <% if(user.avatar) { %>
+                    <img class="user-avatar" src="<%= user.avatar %>"> <% } else { %> <img class="user-avatar"
+                        src="<%= '../../default_user_avatar_img.jpg' %>"> <% } %> <div class="caption">
+                        <h4><strong><%= user.username %></strong></h4>
+                        <p>CampWI Member since</p>
+                        <p><em><%= user.joinDate.toString().substring(4, 15) %></em></p>
+                    </div>
+                </div>
+                <div class="well user-about-me">
+                    <h4 class="text-center">About Me</h4>
+                    <hr class="about-me-hr">
+                    Some text for the users to write a statements about themselves.
+                    Tbh stumptown ramps cray, umami brooklyn poutine enamel pin bespoke squid. Plaid craft beer cronut,
+                    wayfarers pinterest
+                    kale chips tote bag messenger bag kinfolk church-key food truck.
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-10 col-md-9 user-profile-campgrounds-section">
+                <h3 class="text-center"><%= user.username %>'s Campgrounds <i class="fas fa-caravan"></i></h3>
+                <div class="flex-row align-items-center">
+                    <% campgrounds.forEach((campground) => { %>
+                    <div class="flex-child col-xs-12 col-md-6 col-lg-3">
+                        <div class="thumbnail">
+                            <div class="thumbnail-image"
+                                style="background: url(<%= campground.image %>) no-repeat center; background-size: cover; padding-top:60%;">
+                            </div>
+                            <div class="caption text-center">
+                                <h4><%= campground.name %></h4>
+                            </div>
+                            <p>
+                                <a href="/campgrounds/<%= campground._id %>" class="btn">More Info <i
+                                        class="fas fa-info-circle"></i></a>
+                            </p>
+                        </div>
+                    </div>
+                    <% }) %>
+                </div>
+
+            </div>
+
+            <%- include("../partials/footer") %>

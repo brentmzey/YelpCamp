@@ -14,7 +14,7 @@ const seeds = [
     description:
       "Cardigan unicorn 90's roof party actually gluten-free succulents tilde put a bird on it fixie pop-up ethical leggings XOXO. Single-origin coffee venmo prism taiyaki four loko tbh humblebrag coloring book. Paleo bespoke activated charcoal pug, cray retro tacos meh. Messenger bag craft beer meditation keytar, brooklyn chambray gluten-free organic small batch tacos iceland poutine deep v actually kickstarter. IPhone PBR&B cliche salvia art party mumblecore leggings vape activated charcoal edison bulb everyday carry.",
     author: {
-      id: "588c2e092403d111454fff76",
+      id: "5f2df083455d3b47406d7480",
       username: "Brent Zey",
     },
   },
@@ -27,7 +27,7 @@ const seeds = [
     description:
       "Echo park shoreditch vinyl craft beer. Readymade raclette shaman, pinterest asymmetrical celiac schlitz messenger bag mustache small batch bicycle rights health goth gentrify ethical cloud bread. Scenester shaman cold-pressed portland, echo park fashion axe jianbing vexillologist chartreuse synth food truck ennui pinterest. Pinterest tilde literally pork belly, dreamcatcher freegan venmo.",
     author: {
-      id: "588c2e092403d111454fff76",
+      id: "5f2df083455d3b47406d7480",
       username: "Brent Zey",
     },
   },
@@ -39,7 +39,7 @@ const seeds = [
     description:
       "Fam la croix taxidermy, godard messenger bag food truck seitan occupy fashion axe chillwave tbh meggings fixie tousled enamel pin. Kickstarter tattooed blog cronut, skateboard pork belly lumbersexual street art beard everyday carry. Migas chillwave banjo biodiesel, shabby chic chicharrones direct trade. Tote bag brooklyn actually blog vexillologist, meggings next level cloud bread scenester la croix twee skateboard tbh neutra. Raclette tumeric asymmetrical fixie, banh mi VHS leggings crucifix YOLO heirloom sartorial shabby chic etsy. Kinfolk ethical chia four loko freegan asymmetrical quinoa sustainable dreamcatcher +1 copper mug. Migas neutra sartorial scenester, small batch palo santo mustache distillery ugh affogato microdosing.",
     author: {
-      id: "588c2e092403d111454fff76",
+      id: "5f2df083455d3b47406d7480",
       username: "Brent Zey",
     },
   },
@@ -52,7 +52,7 @@ const seeds = [
     description:
       "Copper mug blue bottle yr, pickled trust fund synth helvetica ethical PBR&B drinking vinegar subway tile quinoa literally. Mlkshk sustainable neutra shoreditch asymmetrical church-key migas live-edge letterpress. Before they sold out pinterest fashion axe, 3 wolf moon farm-to-table four loko activated charcoal lo-fi wayfarers flannel slow-carb thundercats kale chips everyday carry small batch. Direct trade ethical mlkshk hexagon cronut VHS. Pabst roof party put a bird on it, locavore yuccie slow-carb microdosing offal copper mug iPhone stumptown tumeric snackwave mixtape green juice.",
     author: {
-      id: "588c2e092403d111454fff76",
+      id: "5f2df083455d3b47406d7480",
       username: "Brent Zey",
     },
   },
@@ -64,7 +64,7 @@ const seeds = [
     description:
       "Green juice copper mug literally slow-carb tousled health goth twee pinterest kogi viral unicorn vegan. You probably haven't heard of them letterpress asymmetrical +1, lo-fi microdosing cray snackwave hammock iPhone cloud bread franzen. Activated charcoal keytar air plant bespoke, tote bag selfies waistcoat microdosing put a bird on it direct trade heirloom. Listicle retro synth, 3 wolf moon adaptogen coloring book narwhal austin godard health goth. Four dollar toast poutine 8-bit edison bulb street art godard ramps intelligentsia bitters 90's wayfarers farm-to-table sriracha artisan raw denim. Chambray etsy ethical lo-fi cold-pressed normcore tilde.",
     author: {
-      id: "5f21cc7aa916425468756f4a",
+      id: "5f2df3fe2b46474c34254648",
       username: "Severus Snape",
     },
   },
@@ -76,7 +76,7 @@ const seeds = [
     description:
       "Edison bulb gochujang bushwick, butcher pour-over locavore kinfolk. Deep v hella trust fund helvetica cliche hexagon tacos chillwave bicycle rights unicorn plaid pickled sartorial green juice. Tacos retro activated charcoal raw denim franzen occupy. Selvage freegan listicle narwhal lumbersexual. Migas unicorn leggings, letterpress meditation franzen pour-over tacos street art organic irony shabby chic portland chartreuse. Synth hoodie cred letterpress. Swag mustache gentrify hot chicken schlitz vexillologist.",
     author: {
-      id: "5f21cc7aa916425468756f4a",
+      id: "5f2df3fe2b46474c34254648",
       username: "Severus Snape",
     },
   },
@@ -88,7 +88,7 @@ const seeds = [
     description:
       "Bicycle rights food truck VHS art party before they sold out ethical scenester put a bird on it keytar ugh subway tile. Hexagon hoodie VHS, viral mixtape chartreuse wolf snackwave poutine photo booth typewriter next level ramps shaman. Roof party woke plaid, hoodie umami vape direct trade selvage poutine twee austin truffaut celiac typewriter cronut. Live-edge tote bag man bun asymmetrical wayfarers stumptown meggings 3 wolf moon synth chillwave green juice banh mi you probably haven't heard of them flexitarian organic. Snackwave craft beer chillwave fashion axe, salvia retro vaporware hot chicken tbh XOXO actually letterpress. Umami sriracha literally four dollar toast.",
     author: {
-      id: "588c2e092403d111454fff76",
+      id: "5f2df083455d3b47406d7480",
       username: "Brent Zey",
     },
   },
@@ -100,7 +100,7 @@ const seeds = [
     description:
       "Tbh stumptown ramps cray, umami brooklyn poutine enamel pin bespoke squid. Plaid craft beer cronut, wayfarers pinterest kale chips tote bag messenger bag kinfolk church-key food truck. Taiyaki butcher tbh af bespoke selfies church-key raw denim viral chartreuse hella truffaut DIY beard artisan. Forage leggings raclette try-hard.",
     author: {
-      id: "588c2e092403d111454fff76",
+      id: "5f2df083455d3b47406d7480",
       username: "Brent Zey",
     },
   },
@@ -112,7 +112,7 @@ const seeds = [
     description:
       "Pug chambray heirloom, polaroid succulents subway tile +1 copper mug. Cold-pressed ennui small batch, lomo try-hard roof party art party single-origin coffee. Skateboard YOLO actually vaporware you probably haven't heard of them, blog ramps DIY dreamcatcher. Celiac 90's selfies everyday carry cardigan readymade. Aesthetic kinfolk swag synth health goth.",
     author: {
-      id: "5f21cc7aa916425468756f4a",
+      id: "5f2df3fe2b46474c34254648",
       username: "Severus Snape",
     },
   },
@@ -133,7 +133,7 @@ async function seedDB() {
       // console.log("Camground created.");
       let comment1 = await Comment.create({
         text: "A great spot to have a nice picnic and enjoy some tasty rum.",
-        author: { id: "588c2e092403d111454fff76", username: "Brent" },
+        author: { id: "5f2df083455d3b47406d7480", username: "Brent" },
         createdAt: moment().year(2020).month(7).date(2),
       });
       // console.log("Comment created.");

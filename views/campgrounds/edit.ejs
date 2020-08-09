@@ -1,7 +1,7 @@
 <%- include("../partials/header") %>
 
-<div class="row">
-    <h1 style="text-align: center; margin: 20px;">Edit <%= campground.name %></h1>
+<div class="row comment-edit-first-row">
+    <h1 style="text-align: center; margin: 20px;">Edit <strong><%= campground.name %></strong></h1>
     <div style="width: 30%; margin: 0 auto;"">
             <form action=" /campgrounds/<%= campground._id %>?_method=PUT" method="POST">
         <div class="form-group">
@@ -31,7 +31,7 @@
             <button class="btn btn-lg btn-default btn-block btn-primary">Submit!</button>
         </div>
         </form>
-        <button class="btn btn-xs"></button><a rel="/campgrounds/<%= campground._id %>"><i
+        <button class="btn btn-xs"></button><a href="/campgrounds/<%= campground._id %>"><i
                 class="fas fa-hand-point-left"></i>
             Go Back</a>
         </button>

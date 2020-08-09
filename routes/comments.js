@@ -9,7 +9,7 @@ const Campground = require("../models/campground"),
 router.get("/new", middleware.isLoggedIn, (req, res) => {
   // Find campground by id
   Campground.findById(req.params.id, (err, campground) => {
-    if (err) {
+    if (err || !campground) {
       console.log(err);
     } else {
       // pass through campground data object
@@ -22,14 +22,14 @@ router.get("/new", middleware.isLoggedIn, (req, res) => {
 router.post("/", middleware.isLoggedIn, (req, res) => {
   // Lookup campground using ID
   Campground.findById(req.params.id, (err, campground) => {
-    if (err) {
+    if (err || !campground) {
       req.flash("error", "Uhrmmm, we could not find that campground.");
       console.log(err);
       res.redirect("/campgrounds/" + req.params.id); // eventually change to show a true comment
     } else {
       // create new comment
       Comment.create(req.body.comment, (err, comment) => {
-        if (err) {
+        if (err || !comment) {
           req.flash("error", "Something went wrong on our end... :/");
           console.log(err);
           res.redirect("/campgrounds/" + req.params.id); // eventually change to show a true comment
@@ -115,7 +115,7 @@ router.put("/:comment_id", middleware.checkCommentOwnership, (req, res) => {
 router.delete("/:comment_id", middleware.checkCommentOwnership, (req, res) => {
   // res.send("the comment delete route");
   Comment.findOneAndDelete({ _id: req.params.comment_id }, req.body.comment, (err, deletedComment) => {
-    if (err) {
+    if (err || !deletedComment) {
       console.log(err);
       res.redirect("back");
     } else {
