@@ -1,4 +1,5 @@
 // Require packagaes & primitive files
+require("dotenv").config();
 const methodOverride = require("method-override"),
   LocalStrategy = require("passport-local"),
   bodyParser = require("body-parser"),
@@ -34,7 +35,9 @@ mongoose
   .then(() => console.log("Connected to 'camp_wi' DB!"))
   .catch((error) => console.log(error.message));
 // Avoid deprecated Mongoose methods
+mongoose.set("useNewUrlParser", true);
 mongoose.set("useFindAndModify", false);
+mongoose.set("useCreateIndex", true);
 
 // Configure body-parser
 app.use(bodyParser.urlencoded({ extended: true }));
