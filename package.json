@@ -1,7 +1,7 @@
 {
-  "name": "yelpcamp",
+  "name": "CampWI",
   "version": "1.0.0",
-  "description": "Yelp Camp",
+  "description": "Blog and interactive discovery platform for campgrounds in Wisconsin",
   "main": "index.js",
   "scripts": {
     "test": "jest --watchAll",
