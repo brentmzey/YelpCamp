@@ -25,42 +25,44 @@
     </div>
 </div>
 
-<div class="container">
-    <% if(noMatch !== null) { %>
-    <!-- Show "error" message for 'bad' query -->
-    <div class="col-md-12 text-center">
-        <h3><%= noMatch %></h3>
-    </div>
-    <% }else if (campgrounds.length < 1){ %>
-    <div class="col-md-12 text-center">
-        <h3><i class="fas fa-binoculars"></i> Search results:</h3>
-        <h2>No matches to your search. Try again!</h2>
-    </div>
-    <% }else{ %>
-    <div class="row col-xs-12 text-center">
-        <% if (search) { %>
-        <h3><i class="fas fa-binoculars"></i> Search results:</h3>
+<div class="container-fluid campgrounds-index-show-section">
+    <div class="container">
+        <% if(noMatch !== null) { %>
+        <!-- Show "error" message for 'bad' query -->
+        <div class="col-md-12 text-center">
+            <h3><%= noMatch %></h3>
+        </div>
+        <% }else if (campgrounds.length < 1){ %>
+        <div class="col-md-12 text-center">
+            <h3><i class="fas fa-binoculars"></i> Search results:</h3>
+            <h2>No matches to your search. Try again!</h2>
+        </div>
+        <% }else{ %>
+        <div class="row col-xs-12 text-center">
+            <% if (search) { %>
+            <h3><i class="fas fa-binoculars"></i> Search results:</h3>
+            <% } %>
+        </div>
+        <div class="flex-row align-items-center">
+            <% campgrounds.forEach((campground) => { %>
+            <div class="flex-child col-xs-12 col-md-6 col-lg-3">
+                <div class="thumbnail">
+                    <div class="thumbnail-image"
+                        style="background: url(<%= campground.image %>) no-repeat center; background-size: cover; padding-top:60%;">
+                    </div>
+                    <div class="caption text-center">
+                        <h4><%= campground.name %></h4>
+                    </div>
+                    <p>
+                        <a href="/campgrounds/<%= campground._id %>" class="btn">More Info <i
+                                class="fas fa-info-circle"></i></a>
+                    </p>
+                </div>
+            </div>
+            <% }) %>
+        </div>
         <% } %>
     </div>
-    <div class="flex-row align-items-center">
-        <% campgrounds.forEach((campground) => { %>
-        <div class="flex-child col-xs-12 col-md-6 col-lg-3">
-            <div class="thumbnail">
-                <div class="thumbnail-image"
-                    style="background: url(<%= campground.image %>) no-repeat center; background-size: cover; padding-top:60%;">
-                </div>
-                <div class="caption text-center">
-                    <h4><%= campground.name %></h4>
-                </div>
-                <p>
-                    <a href="/campgrounds/<%= campground._id %>" class="btn">More Info <i
-                            class="fas fa-info-circle"></i></a>
-                </p>
-            </div>
-        </div>
-        <% }) %>
-    </div>
-    <% } %>
 </div>
 
 

@@ -1,28 +1,9 @@
 body {
   font-family: Poppins, Verdana, Arial, sans-serif;
-  /* background-image: url("https://images.unsplash.com/photo-1534274169235-d8d4447599d3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80")
-    no-repeat center center fixed; */
   padding-top: 50px;
-  color: rgba(0, 71, 27, 1);
-  background: rgba(240, 235, 210, 1);
-
-  /* Possible 2nd gradient option "Forest" */
-  /* background: #5a3f37; 
-  background: -webkit-linear-gradient(to right, #2c7744, #5a3f37); 
-  background: linear-gradient(
-    to right,
-    #2c7744,
-    #5a3f37
-  ); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-  /* Possible 3rd gradient option "Moss" */
-  /* background: #134e5e; fallback for old browsers
-  background: -webkit-linear-gradient(to right, #71b280, #134e5e); Chrome 10-25, Safari 5.1-6
-  background: linear-gradient(
-    to right,
-    #71b280,
-    #134e5e
-  ); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #093028; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #237a57, #093028); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #237a57, #093028);
 }
 
 .container-fluid.campgrounds-index-header-section {
@@ -52,15 +33,14 @@ body {
   line-height: 3;
 }
 
-/* @media screen and (max-width: 770px) {
-  #jumbotron .form-inline .form-control {
-    align-items: center;
-    justify-content: center;
-  }
-  #jumbotron .btn {
-    align-items: center;
-  }
-} */
+.container-fluid.campgrounds-index-show-section {
+  color: rgba(0, 71, 27, 1);
+  background: rgba(240, 235, 210, 1);
+  /* padding-right: auto;
+  padding-left: auto;
+  margin-right: 15px;
+  margin-left: 15px; */
+}
 
 .row.align-items-center .container > .row.col-md-12.text-center {
   padding-top: 10px;
@@ -167,7 +147,7 @@ body {
 /* Navbar Brand UNSCROLLED STYLING */
 .navbar > .container .navbar-brand {
   background: rgba(240, 235, 210, 1);
-  color: rgba(0, 71, 27, 1);
+  color: #226349;
   font-size: 2.5rem;
   transition: background 500ms;
   text-shadow: rgba(0, 125, 197, 1) 0px 0px 2px;
@@ -175,7 +155,7 @@ body {
 
 .navbar-default .navbar-toggle.collapsed,
 .navbar-default .navbar-toggle > .icon-bar {
-  background: rgba(0, 71, 27, 1);
+  background: #226349;
   color: rgba(240, 235, 210, 1);
   transition: background 500ms;
   border: 1px solid rgba(0, 125, 197, 1);
@@ -186,7 +166,7 @@ body {
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
   background: rgba(240, 235, 210, 1);
-  color: rgba(0, 71, 27, 1);
+  color: #226349;
   transition: background 500ms;
   border: 1px solid rgba(0, 125, 197, 1);
 }
@@ -200,7 +180,7 @@ body {
 /* Navbar UNSCROLLED STYLING */
 .navbar.navbar-default.navbar-fixed-top {
   background: rgba(240, 235, 210, 1);
-  color: rgba(0, 71, 27, 1);
+  color: #226349;
   font-size: 1.5rem;
   font-weight: 400;
   top: 0;
@@ -211,7 +191,7 @@ body {
 
 .navbar a:hover,
 .navbar > .container .navbar-brand:hover {
-  background-color: rgba(0, 71, 27, 1);
+  background-color: #226349;
   opacity: 0.85;
   color: rgba(240, 235, 210, 1);
   transition: background 500ms;
@@ -220,7 +200,8 @@ body {
 
 /* Active Navbar link styling */
 .navbar-default .navbar-nav > .active > a {
-  background: rgba(0, 71, 27, 0.8);
+  background: #226349;
+  opacity: 0.85;
   color: rgba(240, 235, 210, 1);
   transition: background 500ms;
   -webkit-text-stroke: rgba(0, 125, 197, 1) 0.4px;
@@ -236,13 +217,14 @@ body {
 /* Navbar-Rightside styling */
 .navbar-default .navbar-nav > li > a {
   background: rgba(240, 235, 210, 1);
-  color: rgba(0, 71, 27, 1);
+  color: #226349;
   transition: background 500ms;
   text-shadow: rgba(0, 125, 197, 1) 0px 0px 2px;
 }
 
 .navbar-default .navbar-nav > li > a:hover {
-  background: rgba(0, 71, 27, 0.85);
+  background: #226349;
+  opacity: 0.85;
   color: rgba(240, 235, 210, 1);
   transition: background 500ms;
   -webkit-text-stroke: rgba(0, 125, 197, 1) 0.4px;
@@ -254,7 +236,7 @@ body {
 
 /* Navbar Brand SCROLLED STYLING */
 .navbar.scrolled > .container .navbar-brand {
-  background: rgba(0, 71, 27, 1);
+  background: #226349;
   color: rgba(240, 235, 210, 1);
   font-size: 2.5rem;
   transition: background 500ms;
@@ -264,7 +246,7 @@ body {
 .navbar-default.scrolled .navbar-toggle.collapsed,
 .navbar-default.scrolled .navbar-toggle > .icon-bar {
   background: rgba(240, 235, 210, 1);
-  color: rgba(0, 71, 27, 1);
+  color: #226349;
   transition: background 500ms;
   border: 1px solid rgba(0, 125, 197, 1);
 }
@@ -273,7 +255,7 @@ body {
 .navbar-default.scrolled .navbar-toggle.collapsed > .icon-bar,
 .navbar-default.scrolled .navbar-toggle:hover,
 .navbar-default.scrolled .navbar-toggle:focus {
-  background: rgba(0, 71, 27, 1);
+  background: #226349;
   color: rgba(240, 235, 210, 1);
   transition: background 500ms;
   border: 1px solid rgba(0, 125, 197, 1);
@@ -281,7 +263,7 @@ body {
 
 /* Navbar SCROLLED STYLING */
 .navbar.navbar-default.navbar-fixed-top.scrolled {
-  background: rgba(0, 71, 27, 1);
+  background: #226349;
   color: rgba(240, 235, 210, 1);
   font-size: 1.5rem;
   font-weight: 400;
@@ -295,7 +277,7 @@ body {
 .navbar.scrolled > .container .navbar-brand:hover {
   background-color: rgba(240, 235, 210, 1);
   opacity: 0.85;
-  color: rgba(0, 71, 27, 1);
+  color: #226349;
   transition: background 500ms;
   text-shadow: rgba(0, 125, 197, 1) 0px 0px 2px;
 }
@@ -303,13 +285,15 @@ body {
 /* Active Navbar link styling */
 .navbar-default.scrolled .navbar-nav > .active > a {
   background: rgba(240, 235, 210, 1);
-  color: rgba(0, 71, 27, 0.8);
+  color: #226349;
+  opacity: 0.85;
   transition: background 500ms;
   text-shadow: rgba(0, 125, 197, 1) 0px 0px 2px;
 }
 
 .navbar-default.scrolled .navbar-nav > .active > a:hover {
-  background: rgba(0, 71, 27, 0.85);
+  background: #226349;
+  opacity: 0.85;
   color: rgba(240, 235, 210, 1);
   transition: background 500ms;
   -webkit-text-stroke: rgba(0, 125, 197, 1) 0.4px;
@@ -317,7 +301,7 @@ body {
 
 /* Navbar-Rightside styling */
 .navbar-default.scrolled .navbar-nav > li > a {
-  background: rgba(0, 71, 27, 1);
+  background: #226349;
   color: rgba(240, 235, 210, 1);
   transition: background 500ms;
   -webkit-text-stroke: rgba(0, 125, 197, 1) 0.4px;
@@ -325,7 +309,8 @@ body {
 
 .navbar-default.scrolled .navbar-nav > li > a:hover {
   background: rgba(240, 235, 210, 1);
-  color: rgba(0, 71, 27, 0.85);
+  color: #226349;
+  opacity: 0.85;
   transition: background 500ms;
   text-shadow: rgba(0, 125, 197, 1) 0px 0px 2px;
 }
