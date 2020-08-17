@@ -1,18 +1,24 @@
 <%- include("../partials/header") %>
 
-<div class="row">
-    <div class="container">
-        <div class="col-md-12">
-            <form action="/forgot" method="POST">
-                <legend>Forgot Password</legend>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" name="email" class="form-control" autofocus>
-                </div>
-                <div class="form-group">
-                    <input type="submit" class="btn" value="Send reset email">
-                </div>
-            </form>
+<div class="row forgot-password-page-top">
+    <div class="wrapper">
+        <div class="card forgot-password-card">
+            <div class="card-body mx-1">
+                <form action="/forgot" method="POST" class="form-signin">
+                    <div class="form-group pb-2">
+                        <legend class="forgot-password-header text-center">Forgot Password</legend>
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" class="form-control" autofocus required>
+                        <small class="form-text pt-2">You may need to check your spam folder. The message will be sent
+                            from:
+                            <a href="mailto:camp.wisco@gmail.com"><em>camp.wisco@gmail.com</em></a></small>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn" value="Send reset email">
+                    </div>
+                </form>
+            </div>
+            <div class="card-heading"></div>
         </div>
     </div>
 </div>

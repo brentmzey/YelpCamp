@@ -1,44 +1,61 @@
 <%- include("./partials/header") %>
 
-<div class="row">
-    <div class="container">
-        <h1 class="text-center register-header">Sign Up!</h1>
-        <div class="container register-container">
-            <form action="/register" method="POST">
-                <div class="form-group">
-                    <input class="form-control" type="text" name="username" placeholder="Username*  (required)"
-                        aria-label="username" required>
+<div class="register-page-top">
+    <div class="wrapper mb-2">
+        <div class="card register-card">
+            <div class="card-heading"></div>
+            <div class="card-body mx-1">
+                <form action="/register" method="POST" class="form-register">
+                    <h1 class="text-center register-header pb-2">Sign Up!</h1>
+                    <div class="form-row">
+                        <div class="form-group col-sm-6 mb-2">
+                            <label for="registerFirstName" class="sr-only">First Name</label>
+                            <input class="form-control" type="text" name="firstName" id="registerFirstName"
+                                placeholder="First Name" aria-label="firstName" autofocus>
+                        </div>
+                        <div class="form-group col-sm-6 mb-2">
+                            <label for="registerLastName" class="sr-only">Last Name</label>
+                            <input class="form-control" type="text" name="lastName" id="registerLastName"
+                                placeholder="Last Name" aria-label="lastName">
+                        </div>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="registerUsername" class="sr-only">Username</label>
+                        <input class="form-control" type="text" name="username" id="registerUsername"
+                            placeholder="Username*  (required)" aria-label="username" required>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="registerPassword" class="sr-only">Password</label>
+                        <input class="form-control" type="password" name="password" id="registerPassword"
+                            placeholder="Password*  (required)" aria-label="password" required>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="registerEmail" class="sr-only">Email</label>
+                        <input class="form-control" type="email" name="email" id="registerEmail"
+                            placeholder="campWI@email.com (required)" aria-label="email" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-sm-6">
+                            <label for="registerImgURL" class="sr-only">Avatar Image URL</label>
+                            <input class="form-control" type="text" name="avatar" id="registerImgURL"
+                                placeholder="Avatar Image URL" aria-label="avatar">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="registerAdminCode" class="sr-only">Admin Code</label>
+                            <input class="form-control last-register-form-input" type="text" name="adminCode"
+                                id="registerAdminCode" placeholder="Admin Code (optional)" aria-label="adminCode">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-lg btn-block">Register <i
+                                class="fas fa-check"></i></button>
+                    </div>
+                </form>
+                <div class="row align-items-center justify-content-center mt-4">
+                    <a class="btn btn-sm" href="/campgrounds"><i class="fas fa-hand-point-left"></i> Back to all
+                        campgrounds</a>
                 </div>
-                <div class="form-group">
-                    <input class="form-control" type="password" name="password" placeholder="Password*  (required)"
-                        aria-label="password" required>
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="text" name="firstName" placeholder="First Name"
-                        aria-label="firstName">
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="text" name="lastName" placeholder="Last Name"
-                        aria-label="lastName">
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="email" name="email" placeholder="campWI@email.com (required)"
-                        aria-label="email" required>
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="text" name="avatar" placeholder="Avatar Image URL"
-                        aria-label="avatar">
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="text" name="adminCode" placeholder="Admin Code (optional)"
-                        aria-label="adminCode">
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-lg btn-block">Register <i class="fas fa-check"></i></button>
-                </div>
-            </form>
-            <button class="btn btn-xs"><a href="/campgrounds"><i class="fas fa-hand-point-left"></i> Back to all
-                    Campgrounds</a></button>
+            </div>
         </div>
     </div>
 </div>

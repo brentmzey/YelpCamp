@@ -75,7 +75,7 @@ router.get("/logout", (req, res) => {
 router.get("/users/:user_id", (req, res) => {
   User.findById(req.params.user_id, (err, foundUser) => {
     if (err || !foundUser) {
-      req.flash("error", "Well this is awkward, we couldn't find that user. <%= <i class='fas fa-sad-cry'></i> %>");
+      req.flash("error", "Well this is awkward, we couldn't find that user.");
       return res.redirect("/campgrounds");
     }
     Campground.find()
@@ -86,7 +86,7 @@ router.get("/users/:user_id", (req, res) => {
           req.flash("error", "Well this is awkward, we're missing some data.");
           return res.redirect("/campgrounds");
         }
-        res.render("users/show", { user: foundUser, campgrounds: campgrounds });
+        res.render("users/show", { user: foundUser, campgrounds: campgrounds, page: "user" });
       });
     // .catch((err) => {
     //   req.flash("error", "Uhmm, could not find that user.");
@@ -111,7 +111,7 @@ router.post("/forgot", (req, res, next) => {
       },
       (token, done) => {
         User.findOne({ email: req.body.email }, (err, user) => {
-          if (err || !User) {
+          if (err || !user) {
             req.flash("error", "No account with that email address exists.");
             return res.redirect("/forgot");
           }

@@ -1,30 +1,49 @@
 <%- include("../partials/header") %>
 
-<div class="row">
-    <h1 style="text-align: center; margin: 20px;">Create a New Campground</h1>
-    <div style="width: 30%; margin: 0 auto;"">
-            <form action=" /campgrounds" method="POST">
-        <div class="form-group">
-            <input class="form-control" type="text" name="name" placeholder="name">
+<div class="new-campground-page-top mb-3">
+    <div class="wrapper">
+        <div class="card new-campground-card">
+            <div class="card-heading flex-sm-wrap flex-lg-nowrap" style="background: url(<%= bgPhoto %>) top left/cover no-repeat; width: 29.1%;
+  display: table-cell;"></div>
+            <div class="card-body mx-1">
+                <form action="/campgrounds" method="POST" class="form-register">
+                    <h1 class="text-center new-campground-header pb-3">Create a New Campground! <i
+                            class="fas fa-campground"></i></h1>
+                    <div class="form-group">
+                        <label for="newCampgroundName" class="sr-only">Campground Name</label>
+                        <input class="form-control col-xs-12" type="text" name="name" id="newCampgroundName"
+                            placeholder="Campground Name" required autofocus>
+                    </div>
+                    <div class="form-inline form-group">
+                        <span class="input-group-prepend col-xs-2" id="dollar-sign-addon">
+                            <div class="input-group-text">$</div>
+                        </span>
+                        <label for="newCampgroundPrice" class="sr-only">Campsite Price</label>
+                        <input class="form-control col-xs-8" type="number" name="price" id="newCampgroundPrice"
+                            placeholder="Campsite Price" min="0.00" step="0.01">
+                        <span class="input-group-append col-xs-2" id="per-night-price-addon">
+                            <div class="input-group-text">/NIGHT</div>
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label for="newCampgroundImgURL" class="sr-only">Campground Image URL</label>
+                        <input class="form-control col-xs-12" type="text" name="image" id="newCampgroundImgURL"
+                            placeholder="Campground Image URL" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newCampgroundDescription" class="sr-only">Campground Description</label>
+                        <textarea class="form-control col-xs-12" name="description" id="newCampgroundDescription"
+                            placeholder="Campground Description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-lg btn-default btn-block col-xs-12">Submit!</button>
+                    </div>
+                </form>
+                <a class="btn btn-sm" href="/campgrounds"><i class="fas fa-hand-point-left"></i> Back to all
+                    campgrounds</a>
+            </div>
         </div>
-        <div class="form-group">
-            <span class="input-group-addon" id="dollar-sign-addon">$</span>
-            <input class="form-control" type="number" name="price" placeholder="price per night" min="0.00" step="0.01">
-            <span class="input-group-addon" id="per-night-price-addon">/NIGHT</span>
-        </div>
-        <div class="form-group">
-            <input class="form-control" type="text" name="image" placeholder="image url">
-        </div>
-        <div class="form-group">
-            <textarea class="form-control" name="description" placeholder="campground description"></textarea>
-        </div>
-        <div class="form-group">
-            <button class="btn btn-lg btn-default btn-block btn-primary">Submit!</button>
-        </div>
-        </form>
-        <a href="/campgrounds">Go Back</a>
     </div>
-
 </div>
 
 <%- include("../partials/footer") %>

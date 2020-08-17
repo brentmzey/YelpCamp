@@ -1,39 +1,47 @@
 <%- include("../partials/header") %>
 
-<div class="container-fluid user-profile-top">
-    <div class="row user-profile-first-row">
-
-        <div class="container mx-2">
-            <div class="col-xs-12 col-sm-10 col-md-3">
-                <div class="thumbnail">
+<div class="container-fluid user-profile-top row">
+    <div class="container col-sm-12 col-md-10 col-lg-8 user-profile-container mb-4">
+        <div class="row justify-content-center">
+            <div class="col-sm-3 col-md-4 col-lg-4">
+                <div class="card user-profile-card p-0 align-items-center justify-content-center">
                     <% if(user.avatar) { %>
-                    <img class="user-avatar" src="<%= user.avatar %>"> <% } else { %> <img class="user-avatar"
-                        src="<%= '../../default_user_avatar_img.jpg' %>"> <% } %> <div class="caption">
-                        <h4><strong><%= user.username %></strong></h4>
-                        <p>CampWI Member since</p>
-                        <p><em><%= user.joinDate.toString().substring(4, 15) %></em></p>
+                    <div class="card-img-top user-avatar img-responsive center-block"
+                        style="background: url(<%= user.avatar %>) no-repeat center; background-size: cover; padding-top: 25rem;">
+                    </div> <% } else { %> <div class="card-img-top user-avatar"
+                        style="background: url(<%= '../../default_user_avatar_img.jpg' %>) no-repeat center; background-size: cover; padding-top: 25rem;">
+                    </div> <% } %>
+                    <div class="card-body pb-2">
+                        <div class="text-center card-title">
+                            <h4 class="pb-2"><strong><%= user.username %></strong></h4>
+                            <div class="card-subtitle">
+                                <p class="mb-1">CampWI Member since</p>
+                                <p class="mb-0"><em><%= user.joinDate.toString().substring(4, 15) %></em></p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="well user-about-me">
-                    <h4 class="text-center">About Me</h4>
-                    <hr class="about-me-hr">
-                    Some text for the users to write a statements about themselves.
-                    Tbh stumptown ramps cray, umami brooklyn poutine enamel pin bespoke squid. Plaid craft beer cronut,
-                    wayfarers pinterest
-                    kale chips tote bag messenger bag kinfolk church-key food truck.
+                    <div class="card-footer user-about-me">
+                        <h4 class="text-center">About Me</h4>
+                        <hr class="about-me-hr">
+                        Some text for the users to write a statements about themselves.
+                        Tbh stumptown ramps cray, umami brooklyn poutine enamel pin bespoke squid. Plaid craft beer
+                        cronut,
+                        wayfarers pinterest
+                        kale chips tote bag messenger bag kinfolk church-key food truck.
+                    </div>
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-10 col-md-9 user-profile-campgrounds-section">
-                <h3 class="text-center"><%= user.username %>'s Campgrounds <i class="fas fa-caravan"></i></h3>
-                <div class="flex-row align-items-center">
+            <div class="user-profile-campgrounds-section col-sm-9 col-md-6 col-lg-8">
+                <h3 class="text-center mb-3"><%= user.username %>'s Campgrounds <i class="fas fa-caravan"></i></h3>
+                <div class="row d-flex align-items-center justify-content-center">
                     <% campgrounds.forEach((campground) => { %>
-                    <div class="flex-child col-xs-12 col-md-6 col-lg-3">
-                        <div class="thumbnail">
-                            <div class="thumbnail-image"
+                    <div class="col-sm-12 col-md-6 col-lg-4 mb-3 mx-0">
+                        <div class="card align-items-center justify-content-center">
+                            <div class="card-img-top"
                                 style="background: url(<%= campground.image %>) no-repeat center; background-size: cover; padding-top:60%;">
                             </div>
-                            <div class="caption text-center">
+                            <div class="card-body text-center pb-0">
                                 <h4><%= campground.name %></h4>
                             </div>
                             <p>
@@ -44,7 +52,9 @@
                     </div>
                     <% }) %>
                 </div>
-
             </div>
+        </div>
+    </div>
+</div>
 
-            <%- include("../partials/footer") %>
+<%- include("../partials/footer") %>

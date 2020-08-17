@@ -13,7 +13,7 @@ router.get("/new", middleware.isLoggedIn, (req, res) => {
       console.log(err);
     } else {
       // pass through campground data object
-      res.render("./comments/new", { campground: campground });
+      res.render("./comments/new", { campground: campground, bgPhoto: middleware.pickRandomPhoto() });
     }
   });
 });
@@ -75,11 +75,13 @@ router.get("/:comment_id/edit", middleware.checkCommentOwnership, (req, res) => 
             res.redirect("back");
           } else {
             let campground_name = foundCampground.name;
+            let campground_image = foundCampground.image;
             //  Render template with comment, campground_id, & campground_name
             res.render("../views/comments/edit", {
               comment: foundComment,
               campground_id: req.params.id,
               campground_name: campground_name,
+              campground_image: campground_image,
             });
           }
         });
@@ -98,7 +100,7 @@ router.put("/:comment_id", middleware.checkCommentOwnership, (req, res) => {
     // If no malicious user manipulation of campground_id in URL, then:
     // Find and update the correct campground
     Comment.findOneAndUpdate({ _id: req.params.comment_id }, req.body.comment, (err, updatedComment) => {
-      if (err || !foundComment) {
+      if (err || !updatedComment) {
         console.log(err);
         req.flash("error", "Uhrmmm, we could not find that comment.");
         res.redirect("back");

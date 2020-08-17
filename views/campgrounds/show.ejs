@@ -1,68 +1,175 @@
 <%- include("../partials/header") %>
 
-<div class="container-fluid show-page-top">
-    <div class="row show-page-first-row">
-        <div class="container col-xs-3">
-            <p class="panel-heading text-center campground-header"><%= campground.name %></p>
-        </div>
-        <div class="container">
-            <div class="col-xs-9">
-                <div class="thumbnail">
-                    <img class="img-responsive center-block" src="<%= campground.image %>">
-                    <div class="caption">
-                        <h4 class="pull-right">$<%= campground.price %>/night</h4>
+<div class="show-page-top">
+    <div class="container">
+        <div class="row show-page-first-row justify-content-center">
+            <div class="col-sm-10 col-md-8">
+                <p class="panel-heading text-center campground-header"><%= campground.name %></p>
+                <div class="card campground-show-page-card mb-4">
+                    <div class="card-img-top img-responsive center-block"
+                        style="background: url(<%= campground.image %>) no-repeat center; background-size: cover; padding-top:60%;">
+                    </div>
+                    <div class="card-body pb-0">
+                        <h4 class="float-right">$<%= campground.price %>/NIGHT</h4>
                         <h4><%= campground.name %></h4>
-                        <p><%= campground.description %></p>
-                        <p>
+                        <p class="my-1">
                             <em>Submitted by: <a
                                     href="/users/<%= campground.author.id %>"><%= campground.author.username %></a>,
                                 <%= moment(campground.createdAt).fromNow() %>
                             </em>
                         </p>
+                        <p><%= campground.description %></p>
                         <% if(currentUser && campground.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin) { %>
-                        <div class="campground-edit-delete-btns">
-                            <a class="btn btn-xs btn-warning" role="button"
+                        <div class="campground-edit-delete-btns pb-1">
+                            <a class="btn btn-sm btn-warning my-0 py-0" role="button"
                                 href="/campgrounds/<%= campground._id %>/edit">Edit</a>
                             <form class="delete-campground-form"
                                 action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
-                                <button class="btn btn-xs btn-danger">Delete</button>
+                                <button class="btn btn-sm btn-danger my-0 py-0">Delete</button>
                             </form>
-                            <% } %>
                         </div>
+                        <% } %>
                     </div>
                 </div>
 
-                <div class="well">
-                    <div class="text-right">
-                        <a class="btn btn-success" href="/campgrounds/<%= campground._id %>/comments/new">Add
-                            New Comment
+                <div class="card-footer mb-5 pb-1">
+                    <div class="text-right mb-3">
+                        <!-- Setting up the add new comment button that is used for collapsing -->
+                        <a class="btn float-right" role="button" data-toggle="collapse" href="#collapseComment"
+                            aria-expanded="false" aria-controls="collapseComment">
+                            <i class="fas fa-plus"></i> Add New Comment
                         </a>
                     </div>
-                    <hr>
-                    <% campground.comments.forEach((comment) => { %>
-                    <strong><%= comment.author.username %></strong>
-                    <span class="pull-right"><%= moment(comment.createdAt).fromNow() %></span>
-                    <p><%= comment.text %></p>
-                    <% if(currentUser && comment.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin) { %>
-                    <div class="comment-edit-delete-btns">
-                        <a class="btn btn-xs btn-warning" role="button"
-                            href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit">Edit
-                            Comment</a>
-                        <form class="delete-comment-form"
-                            action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=DELETE"
-                            method="POST">
-                            <button class="btn btn-xs btn-danger">Delete Comment</button>
-                        </form>
+                    <!-- Comment section title -->
+                    <h3><strong>Comments <i class="fas fa-comment"></i></strong></h3>
+
+                    <!-- Collapse Add a comment form START -->
+                    <div class="collapse" id="collapseComment">
+                        <div class="card-footer add-comment-card-footer"
+                            style="border-left: 5px solid rgba(0, 71, 27, 1);">
+                            <% if(!currentUser) { %>
+                            <!-- If the user is not logged in, direct the user to the login page -->
+                            <h5>You need to login before you can comment. <a href="/login">Click here</a> to go to the
+                                login page.</h5>
+                            <% } %>
+                            <% if(currentUser) { %>
+                            <!-- If the user is logged in, show the new comment form -->
+                            <h4>Write your comment <i class="fas fa-pencil-alt" aria-hidden="true"></i></h4>
+                            <div class="form-row">
+                                <form id="add-comment-form" action="/campgrounds/<%= campground._id %>/comments"
+                                    method="POST">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" disabled
+                                            value="<%= currentUser.username %>">
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea class="form-control" name="comment[text]"
+                                            placeholder="Write your comment..." form="add-comment-form" rows="5"
+                                            cols="70" autofocus required></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn btn-sm">Comment <i
+                                                class="fas fa-comment"></i></span></button>
+                                    </div>
+                                </form>
+                            </div>
+                            <% } %>
+                        </div>
                     </div>
+                    <!-- Collapse Add a comment form END -->
+
+                    <hr>
+
+                    <!-- Check if there are comments, if there are none say no comments. -->
+                    <% if (campground.comments.length === 0) { %>
+                    <h4 class="text-center py-3 mx-auto"><em>No comments yet.</em></h4>
                     <% } %>
+
+                    <!-- If comments do exist for this campground, then print them -->
+                    <% campground.comments.forEach((comment) => { %>
+                    <div class="row">
+                        <div class="col-12 pt-2">
+
+                            <% if (currentUser && currentUser._id.equals(comment.author.id)) { %>
+                            <!-- If the current user owns the comment, change the color -->
+                            <!-- Time since comment was created -->
+                            <h6 class="float-right">
+                                <strong><em>
+                                        <%= moment(comment.createdAt).fromNow() %>
+                                    </em></strong>
+                            </h6>
+                            <!--Print out the author username-->
+                            <h5 aria-hidden="true" style="color: rgba(0, 125, 197, 1);"><strong>
+                                    <i class="fas fa-hiking" aria-hidden="true"></i>
+                                    <%= comment.author.username %></strong>
+                            </h5>
+                            <% } else { %>
+                            <!-- Time since comment was created -->
+                            <h6 class="float-right">
+                                <strong><em>
+                                        <%= moment(comment.createdAt).fromNow() %>
+                                    </em></strong>
+                            </h6>
+                            <!-- Else just display it green -->
+                            <h5 aria-hidden="true" style="color: rgba(0, 71, 27, 1);"><strong>
+                                    <i class="fas fa-hiking" aria-hidden="true"></i>
+                                    <%= comment.author.username %></strong>
+                            </h5>
+                            <% } %>
+
+                            <!-- Comment text -->
+                            <p class="mb-0"><%= comment.text %></p>
+                            <!-- If the user is logged in and is the owner of the comment or an Admin, show the edit and delete buttons -->
+                            <% if(currentUser && comment.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin) { %>
+                            <!-- Edit button used for collapsing the edit comment form -->
+                            <div class="comment-edit-delete-btns mt-0 mb-2">
+                                <a class="btn btn-sm btn-warning my-0 py-0" role="button" data-toggle="collapse"
+                                    href="#collapseEdit<%= comment._id %>" aria-expanded="false"
+                                    aria-controls="collapse<%= comment._id %>">
+                                    Edit Comment
+                                </a>
+                                <!-- Delete comment button -->
+                                <form class="delete-comment-form"
+                                    action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=DELETE"
+                                    method="POST">
+                                    <button class="btn btn-sm btn-danger my-0 py-0">Delete Comment</button>
+                                </form>
+                                <!-- Edit comment form -->
+                                <div class="collapse" id="collapseEdit<%= comment._id %>">
+                                    <div class="card-footer add-comment-card-footer-expanded"
+                                        style="border-left: 5px solid rgba(0, 71, 27, 1); margin-top: 15px;">
+                                        <h4>Edit comment <i class="fas fa-pencil-alt" aria-hidden="true"></i></h4>
+                                        <form id="edit-comment-form<%= comment._id %>"
+                                            action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=PUT"
+                                            method="POST">
+                                            <div class="form-group">
+                                                <input class="form-control" type="text" disabled
+                                                    value="<%= currentUser.username %>">
+                                            </div>
+                                            <div class="form-group">
+                                                <textarea class="form-control" name="comment[text]"
+                                                    placeholder="Your comment text..."
+                                                    form="edit-comment-form<%= comment._id %>" rows="5" cols="70"
+                                                    autofocus required><%= comment.text %></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <button class="btn btn-warning btn-sm">Edit comment <i
+                                                        class="fas fa-comment"></i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+                        </div>
+                    </div>
                     <% }) %>
+                    <!-- COMMENT SECTION END -->
                 </div>
             </div>
         </div>
     </div>
 </div>
-</div>
-
-
 
 <%- include("../partials/footer") %>

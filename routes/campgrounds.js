@@ -10,45 +10,65 @@ const Campground = require("../models/campground"),
 //===================
 // INDEX - show all campgrounds
 router.get("/", (req, res) => {
+  let perPage = 6;
+  let pageQuery = parseInt(req.query.page);
+  let pageNumber = pageQuery ? pageQuery : 1;
   let noMatch = null;
+  // Render the page
   if (req.query.search) {
-    let search = true;
     // If there's a query, run a MongoDB search with that query data
     const regex = new RegExp(middleware.escapeRegex(req.query.search), "gi");
     // Get all campgrounds from DB matching the REGEX
-    Campground.find(
-      { $or: [{ name: regex }, { location: regex }, { "author.username": regex }] },
-      (err, allCampgrounds) => {
-        if (err) {
-          console.log(err);
-        } else {
-          if (allCampgrounds.length < 1) {
-            noMatch = "No campgrounds match that search, please try again.";
+    Campground.find({ $or: [{ name: regex }, { location: regex }, { "author.username": regex }] })
+      .skip(perPage * pageNumber - perPage)
+      .limit(perPage)
+      .exec((err, allCampgrounds) => {
+        Campground.countDocuments({ $or: [{ name: regex }, { location: regex }, { "author.username": regex }] }).exec(
+          (err, count) => {
+            if (err || !allCampgrounds) {
+              req.flash("error", "Well this is embarrassing, we failed to find some items... :/");
+              res.redirect("/");
+              console.log(err);
+            } else {
+              if (allCampgrounds.length < 1) {
+                noMatch = "No campgrounds match that search, please try again.";
+              }
+              res.render("./campgrounds/index", {
+                campgrounds: allCampgrounds,
+                currentPage: pageNumber,
+                pages: Math.ceil(count / perPage),
+                page: "campgrounds",
+                noMatch: noMatch,
+                search: req.query.search, // "req.query.search" by existing is implicitly truthy
+              });
+            }
           }
-          res.render("./campgrounds/index", {
-            campgrounds: allCampgrounds,
-            page: "campgrounds",
-            noMatch: noMatch,
-            search: search,
-          });
-        }
-      }
-    );
+        );
+      });
   } else {
-    let search = false;
+    // rendering "INDEX" page w/ pagination if NO SEARCH
     // Get all campgrounds from DB
-    Campground.find({}, (err, allCampgrounds) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.render("./campgrounds/index", {
-          campgrounds: allCampgrounds,
-          page: "campgrounds",
-          noMatch: noMatch,
-          search: search,
+    Campground.find({})
+      .skip(perPage * pageNumber - perPage)
+      .limit(perPage)
+      .exec((err, allCampgrounds) => {
+        Campground.countDocuments().exec((err, count) => {
+          if (err || !allCampgrounds) {
+            req.flash("error", "Well this is embarrassing, we failed to find some items... :/");
+            res.redirect("/");
+            console.log(err);
+          } else {
+            res.render("./campgrounds/index", {
+              campgrounds: allCampgrounds,
+              currentPage: pageNumber,
+              pages: Math.ceil(count / perPage),
+              page: "campgrounds",
+              noMatch: noMatch,
+              search: false,
+            });
+          }
         });
-      }
-    });
+      });
   }
 });
 
@@ -79,7 +99,7 @@ router.post("/", middleware.isLoggedIn, (req, res) => {
 
 // NEW - show form to create new campground
 router.get("/new", middleware.isLoggedIn, (req, res) => {
-  res.render("./campgrounds/new");
+  res.render("./campgrounds/new", { bgPhoto: middleware.pickRandomPhoto() });
 });
 
 // SHOW - shows additional info about one campground
@@ -120,6 +140,7 @@ router.put("/:id", middleware.checkCampgroundOwnership, (req, res) => {
       res.redirect("back");
     } else {
       // Redirect somewhere -- typically to the SHOW page of that campground
+      req.flash("success", "Campground page edited!");
       res.redirect("/campgrounds/" + req.params.id);
     }
   });
