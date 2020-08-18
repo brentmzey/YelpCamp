@@ -1020,9 +1020,7 @@ html {
 /* ======================================================== */
 
 .show-page-top .show-page-first-row .card-body .campground-edit-delete-btns > .btn-warning,
-.show-page-top .show-page-first-row .card-footer .comment-edit-delete-btns > .btn-warning,
-.show-page-top .show-page-first-row .card-body .campground-edit-delete-btns > .btn-warning > a,
-.show-page-top .show-page-first-row .card-footer .comment-edit-delete-btns > .btn-warning > a {
+.show-page-top .show-page-first-row .card-footer .comment-edit-delete-btns > .btn-warning {
   opacity: 0;
   color: rgba(240, 235, 210, 1);
   background-color: #f0ad4e;
@@ -1096,6 +1094,30 @@ html {
   -webkit-text-stroke-color: transparent;
 }
 
+/* ++++++++++++++++++++++++++++++++++++++++++++++++ */
+/*      IF TOUCHSCREEN OR NO MOUSE, DISPLAY         */
+/*     EDIT & DELETE BUTTONS W/OUT ANIMATION        */
+/* ++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+@media not (pointer: fine) {
+  .show-page-top .show-page-first-row .card-body .campground-edit-delete-btns > .btn-warning,
+  .show-page-top .show-page-first-row .card-footer .comment-edit-delete-btns > .btn-warning {
+    opacity: 1;
+    color: rgba(240, 235, 210, 1);
+    background-color: #f0ad4e;
+    border-color: #eea236;
+    outline: 0.5px auto #eea236;
+  }
+  .show-page-top .show-page-first-row .card-body .campground-edit-delete-btns > .delete-campground-form > .btn-danger,
+  .show-page-top .show-page-first-row .card-footer .comment-edit-delete-btns > .delete-comment-form > .btn-danger {
+    opacity: 1;
+    color: rgba(240, 235, 210, 1);
+    background-color: #d9534f;
+    border-color: #d43f3a;
+    outline: 0.5px auto #d43f3a;
+  }
+}
+
 /* ======================================================== */
 /*      CAMPGROUND SHOW, CREATE, & EDIT PAGE STYLING        */
 /* ======================================================== */
@@ -1139,12 +1161,35 @@ html {
 }
 
 .show-page-first-row .card-footer.add-comment-card-footer,
-.show-page-first-row .card-footer.add-comment-card-footer-expanded {
+.show-page-first-row .card-footer.edit-comment-card-footer {
   border: none;
   border-left: 5px solid rgba(0, 71, 27, 1);
   -webkit-box-shadow: 0px 0px 10px 5px rgba(0, 125, 197, 1);
   -moz-box-shadow: 0px 0px 10px 5px rgba(0, 125, 197, 1);
   box-shadow: 0px 0px 10px 5px rgba(0, 125, 197, 1);
+}
+
+.show-page-first-row .card-footer.add-comment-card-footer {
+  border-left: 5px solid rgba(0, 71, 27, 1);
+}
+
+.show-page-first-row .card-footer.edit-comment-card-footer {
+  border-left: 5px solid rgba(0, 71, 27, 1);
+  margin-top: 15px;
+}
+
+.new-comment-form .form-control,
+.edit-comment-form .form-control {
+  background: rgba(0, 125, 197, 0.15);
+  color: rgba(0, 71, 27, 1);
+}
+
+.commenter-current-user {
+  color: rgba(0, 125, 197, 1);
+}
+
+.commenter-other-user {
+  color: rgba(0, 71, 27, 1);
 }
 
 .show-page-first-row .card > .card-body > h4:not(.float-right) {

@@ -18,9 +18,9 @@
                                 <%= moment(campground.createdAt).fromNow() %>
                             </em>
                         </p>
-                        <p><%= campground.description %></p>
+                        <p class="mb-1"><%= campground.description %></p>
                         <% if(currentUser && campground.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin) { %>
-                        <div class="campground-edit-delete-btns pb-1">
+                        <div class="campground-edit-delete-btns pb-3">
                             <a class="btn btn-sm btn-warning my-0 py-0" role="button"
                                 href="/campgrounds/<%= campground._id %>/edit">Edit</a>
                             <form class="delete-campground-form"
@@ -45,8 +45,7 @@
 
                     <!-- Collapse Add a comment form START -->
                     <div class="collapse" id="collapseComment">
-                        <div class="card-footer add-comment-card-footer"
-                            style="border-left: 5px solid rgba(0, 71, 27, 1);">
+                        <div class="card-footer add-comment-card-footer">
                             <% if(!currentUser) { %>
                             <!-- If the user is not logged in, direct the user to the login page -->
                             <h5>You need to login before you can comment. <a href="/login">Click here</a> to go to the
@@ -56,8 +55,8 @@
                             <!-- If the user is logged in, show the new comment form -->
                             <h4>Write your comment <i class="fas fa-pencil-alt" aria-hidden="true"></i></h4>
                             <div class="form-row">
-                                <form id="add-comment-form" action="/campgrounds/<%= campground._id %>/comments"
-                                    method="POST">
+                                <form class="new-comment-form" id="add-comment-form"
+                                    action="/campgrounds/<%= campground._id %>/comments" method="POST">
                                     <div class="form-group">
                                         <input class="form-control" type="text" disabled
                                             value="<%= currentUser.username %>">
@@ -99,9 +98,11 @@
                                     </em></strong>
                             </h6>
                             <!--Print out the author username-->
-                            <h5 aria-hidden="true" style="color: rgba(0, 125, 197, 1);"><strong>
+                            <h5 class="commenter-current-user" aria-hidden="true">
+                                <strong>
                                     <i class="fas fa-hiking" aria-hidden="true"></i>
-                                    <%= comment.author.username %></strong>
+                                    <%= comment.author.username %>
+                                </strong>
                             </h5>
                             <% } else { %>
                             <!-- Time since comment was created -->
@@ -111,9 +112,11 @@
                                     </em></strong>
                             </h6>
                             <!-- Else just display it green -->
-                            <h5 aria-hidden="true" style="color: rgba(0, 71, 27, 1);"><strong>
+                            <h5 class="commenter-other-user" aria-hidden="true">
+                                <strong>
                                     <i class="fas fa-hiking" aria-hidden="true"></i>
-                                    <%= comment.author.username %></strong>
+                                    <%= comment.author.username %>
+                                </strong>
                             </h5>
                             <% } %>
 
@@ -136,10 +139,9 @@
                                 </form>
                                 <!-- Edit comment form -->
                                 <div class="collapse" id="collapseEdit<%= comment._id %>">
-                                    <div class="card-footer add-comment-card-footer-expanded"
-                                        style="border-left: 5px solid rgba(0, 71, 27, 1); margin-top: 15px;">
+                                    <div class="card-footer edit-comment-card-footer">
                                         <h4>Edit comment <i class="fas fa-pencil-alt" aria-hidden="true"></i></h4>
-                                        <form id="edit-comment-form<%= comment._id %>"
+                                        <form class="edit-comment-form" id="edit-comment-form<%= comment._id %>"
                                             action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=PUT"
                                             method="POST">
                                             <div class="form-group">
