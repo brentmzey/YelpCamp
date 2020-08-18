@@ -83,6 +83,6 @@ app.use("/campgrounds", campgroundRoutes); // pre-prends '/campgrounds' in front
 app.use("/campgrounds/:id/comments", commentRoutes);
 
 // Start server
-app.listen(1000, function () {
-  console.log("The CampWI server has started at localhost:1000!!!");
+app.listen(process.env.port, () => {
+  console.log("The CampWI server has started at localhost:" + process.env.port + "!!!");
 });
