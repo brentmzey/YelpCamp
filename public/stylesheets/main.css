@@ -505,9 +505,23 @@ html {
   color: rgba(0, 71, 27, 1);
   border: 1.5px solid rgba(0, 125, 197, 1);
   min-width: 375px;
+  min-height: 40px;
   line-height: 3;
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: normal;
+}
+
+@media screen and (min-width: 650px) {
+  #jumbotron .col-search-form > .form-inline > .form-group > .form-control {
+    background: rgba(240, 235, 210, 1);
+    color: rgba(0, 71, 27, 1);
+    border: 1.5px solid rgba(0, 125, 197, 1);
+    min-width: 375px;
+    min-height: 1em;
+    line-height: 3;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
 }
 
 #jumbotron .col-search-form > .form-inline > .form-group > .btn {
