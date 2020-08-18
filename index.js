@@ -28,7 +28,7 @@ if (!process.env.DATABASE_URL) {
 
 // Connect (or create new DB) for mongoose to interact with MongoDB
 mongoose
-  .connect(process.env.DATABASE_URL, {
+  .connect(process.env.DATABASE_URL || "mongodb://localhost:27017/camp_wi", {
     // need to use the localhost port of 27017 since our local instance of Mongo runs/listens here
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -83,6 +83,6 @@ app.use("/campgrounds", campgroundRoutes); // pre-prends '/campgrounds' in front
 app.use("/campgrounds/:id/comments", commentRoutes);
 
 // Start server
-app.listen(process.env.port, () => {
+app.listen(process.env.PORT, () => {
   console.log("The CampWI server has started at localhost:" + process.env.port + "!!!");
 });
