@@ -25,19 +25,18 @@ const { resolveInclude } = require("ejs");
 if (!process.env.DATABASE_URL) {
   throw new Error("process.env.DATABASE_URL is not defined. Aborting");
 }
+
 // Connect (or create new DB) for mongoose to interact with MongoDB
 mongoose
   .connect(process.env.DATABASE_URL, {
     // need to use the localhost port of 27017 since our local instance of Mongo runs/listens here
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
   })
   .then(() => console.log("Connected to 'camp_wi' DB!"))
-  .catch((error) => console.log(error.message));
-// Avoid deprecated Mongoose methods
-mongoose.set("useNewUrlParser", true);
-mongoose.set("useFindAndModify", false);
-mongoose.set("useCreateIndex", true);
+  .catch((error) => console.log("ERROR: ", error.message));
 
 // Configure body-parser
 app.use(bodyParser.urlencoded({ extended: true }));
