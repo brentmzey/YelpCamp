@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const notificationSchema = new mongoose.Schema({
   username: String,
   campgroundId: String,
+  campgroundName: String,
   commentId: String,
   isCampgroundNotification: { type: Boolean, default: false },
   isCommentNotification: { type: Boolean, default: false },

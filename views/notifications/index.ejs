@@ -1,10 +1,10 @@
 <%- include("../partials/header") %>
 
-<div class="container-fluid user-profile-top row">
-    <div class="container col-11 col-md-10 col-lg-8 user-profile-container mb-4">
+<div class="container-fluid user-notifications-top row">
+    <div class="container col-11 col-md-10 col-lg-8 user-notifications-container mb-4 px-0">
         <div class="row justify-content-center">
-            <div class="col-sm-8 col-md-4 col-lg-3">
-                <div class="card user-profile-card p-0 align-items-center justify-content-center">
+            <div class="col-10 col-sm-10 col-md-7 col-lg-4 col-xl-3">
+                <div class="card user-profile-card p-0 align-self-start justify-content-center">
                     <% if(user.avatar) { %>
                     <div class="card-img-top user-avatar img-responsive center-block"
                         style="background: url(<%= user.avatar %>) no-repeat center; background-size: cover; padding-top: 25rem;">
@@ -26,23 +26,24 @@
                 </div>
             </div>
 
-            <div class="user-profile-campgrounds-section col-11 col-sm-9 col-md-8">
-                <h3 class="text-center mb-3"><%= user.username %>'s Notifications <i class="fas fa-bell"></i></h3>
-                <div class="row d-flex align-items-center justify-content-center">
+            <div class="user-notifications-section col-10 col-sm-10 col-md-9 col-lg-7">
+                <h3 class="text-center mb-3"><%= user.username %>'s Past Notifications <i class="fas fa-bell"></i></h3>
+                <div class="row d-flex align-items-center justify-content-center mb-3">
                     <% if (cntNotifications < 1) { %>
                     <h3 class="my-5">You don't have any notifications <i class="fas fa-sad-cry"></i></h3>
                     <% } else { %>
                     <% allNotifications.forEach((notification) => { %>
-                    <div class="col-12 col-md-6 col-lg-4 mb-3 mx-0">
-                        <div class="card align-items-center justify-content-center">
-                            <div class="text-center">
-                                <h4><%= notification.username %>
+                    <div class="col-10 col-md-8 col-lg-4 p-0 mt-2 ml-2">
+                        <div class="card notification-card align-items-center justify-content-center">
+                            <div class="card-title text-center">
+                                <p class="my-auto"><%= notification.username %>
                                     <% if(notification.isCampgroundNotification) { %>
-                                    created a new campground.
-
-                                </h4>
+                                    created a new campground,
+                                    <strong><em><%= notification.campgroundName %></em></strong>
+                                    .
+                                </p>
                             </div>
-                            <p>
+                            <p class="align-self-center mt-1">
                                 <a href="/notifications/<%= notification._id %>" class="btn">Go to campground <i
                                         class="fas fa-info-circle"></i></a>
                             </p>

@@ -510,7 +510,7 @@ html {
   color: rgba(0, 71, 27, 1);
   border: 1.5px solid rgba(0, 125, 197, 1);
   min-width: 325px;
-  min-height: 40px;
+  min-height: 48px;
   line-height: 3;
   font-size: 0.85rem;
   font-weight: normal;
@@ -1303,7 +1303,8 @@ div.col-md-9 div.thumbnail div.caption h4.pull-right + h4 {
 /*               USER PROFILE PAGE STYLING                  */
 /* ======================================================== */
 
-.user-profile-top {
+.user-profile-top,
+.user-notifications-top {
   padding-top: 50px;
   /* "Under the Lake" CSS Gradient design from "uigradients.com" */
   background: #093028; /* fallback for old browsers */
@@ -1312,7 +1313,8 @@ div.col-md-9 div.thumbnail div.caption h4.pull-right + h4 {
   color: rgba(240, 235, 210, 1);
 }
 
-.user-profile-top > .user-profile-container {
+.user-profile-top > .user-profile-container,
+.user-notifications-top > .user-notifications-container {
   padding-top: 20px;
   margin-bottom: auto;
   border-radius: 15px;
@@ -1358,9 +1360,9 @@ div.col-md-9 div.thumbnail div.caption h4.pull-right + h4 {
 }
 
 .user-profile-campgrounds-section .card {
-  min-height: 320px;
-  max-height: 350px;
-  max-width: 315px;
+  height: 240px;
+  min-width: 100px;
+  max-width: 350px;
   /* "Under the Lake" CSS Gradient design from "uigradients.com" */
   background: #093028; /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #237a57, #093028); /* Chrome 10-25, Safari 5.1-6 */
@@ -1369,23 +1371,68 @@ div.col-md-9 div.thumbnail div.caption h4.pull-right + h4 {
 
 .user-profile-campgrounds-section .card > .card-body > h4 {
   color: rgba(240, 235, 210, 1);
-  font-size: 1.8rem;
+  font-size: 1.15rem;
   font-family: Bebas Neue, sans-serif;
-  -webkit-text-stroke: rgba(0, 125, 197, 1) 0.8px;
+  -webkit-text-stroke: rgba(0, 125, 197, 1) 0.3px;
 }
 
-.user-profile-campgrounds-section .card .card-body > a.btn,
-.user-profile-campgrounds-section .card a.btn {
+.user-profile-campgrounds-section .card .btn {
   text-decoration: none;
+  font-size: 0.65rem;
   background: rgba(240, 235, 210, 1);
   color: rgba(0, 71, 27, 1);
   border: 2px solid rgba(0, 71, 27, 1);
   outline: 2px auto rgba(0, 125, 197, 1);
 }
 
-.user-profile-campgrounds-section .card .card-body > a.btn:hover,
-.user-profile-campgrounds-section .card a.btn:hover {
+.user-profile-campgrounds-section .card .btn:hover {
   text-decoration: none;
+  font-size: 0.65rem;
+  background: rgba(0, 125, 197, 1);
+  color: rgba(240, 235, 210, 1);
+  border: 2px solid rgba(0, 125, 197, 1);
+  outline: 2px auto rgba(0, 71, 27, 1);
+}
+
+/* ======================================================== */
+/*            USER NOTIFICATIONS PAGE STYLING               */
+/* ======================================================== */
+
+.user-notifications-section .notification-card {
+  height: 180px;
+  max-height: 200px;
+  max-width: 280px;
+  /* "Under the Lake" CSS Gradient design from "uigradients.com" */
+  background: #093028; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #237a57, #093028); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #237a57, #093028);
+}
+
+.notification-card {
+  font-size: 0.8rem;
+}
+
+.user-notifications-top .user-notifications-section .card-title {
+  color: rgba(240, 235, 210, 1);
+}
+
+.user-notifications-top .user-notifications-section .card-title > p {
+  font-size: 0.9em;
+  -webkit-text-stroke: rgba(0, 125, 197, 1) 0.3px;
+}
+
+.user-notifications-section .notification-card .btn {
+  text-decoration: none;
+  font-size: 0.55em;
+  background: rgba(240, 235, 210, 1);
+  color: rgba(0, 71, 27, 1);
+  border: 2px solid rgba(0, 71, 27, 1);
+  outline: 2px auto rgba(0, 125, 197, 1);
+}
+
+.user-notifications-section .notification-card .btn:hover {
+  text-decoration: none;
+  font-size: 0.55em;
   background: rgba(0, 125, 197, 1);
   color: rgba(240, 235, 210, 1);
   border: 2px solid rgba(0, 125, 197, 1);

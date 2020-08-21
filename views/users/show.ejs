@@ -1,10 +1,10 @@
 <%- include("../partials/header") %>
 
 <div class="container-fluid user-profile-top">
-    <div class="container col-12 col-md-11 col-lg-10 user-profile-container mb-4">
+    <div class="container col-11 col-md-10 col-lg-8 user-profile-container mb-4 px-0">
         <div class="row justify-content-center">
             <div
-                class="card user-profile-card mh-25 p-0 mx-5 mx-md-0 d-flex justify-content-center col-11 col-md-3 col-lg-2">
+                class="card user-profile-card col-10 col-sm-10 col-md-7 col-lg-4 col-xl-3 p-0 align-self-start justify-content-center">
                 <% if(user.avatar) { %>
                 <div class="card-img-top user-avatar img-responsive center-block"
                     style="background: url(<%= user.avatar %>) no-repeat center; background-size: cover; padding-top: 25rem;">
@@ -33,23 +33,23 @@
                 </div>
             </div>
 
-            <div class="user-profile-campgrounds-section mx-5 mx-md-0 col-11 col-md-8 col-lg-9">
+            <div class="user-profile-campgrounds-section col-10 col-sm-10 col-md-9 col-lg-7">
                 <h3 class="text-center mb-3"><%= user.username %>'s Campgrounds <i class="fas fa-caravan"></i></h3>
-                <div class="row container align-items-center justify-content-center">
+                <div class="row container align-items-center justify-content-center mb-1">
                     <% if (campgrounds.length < 1) { %>
                     <h3 class="my-5 text-center">You haven't created any campgrounds yet <i
                             class="fas fa-heart-broken"></i></h3>
                     <% } else { %>
                     <% campgrounds.forEach((campground) => { %>
-                    <div class="col-8 col-md-6 col-lg-3 p-0 my-2 ml-4">
-                        <div class="card align-items-center justify-content-center">
+                    <div class="col-10 col-md-8 col-lg-4 p-0 my-2 ml-4">
+                        <div class="card show-page-campground-card align-items-center justify-content-center">
                             <div class="card-img-top"
                                 style="background: url(<%= campground.image %>) no-repeat center; background-size: cover; padding-top:60%;">
                             </div>
-                            <div class="card-body text-center pb-0">
+                            <div class="card-body text-center">
                                 <h4><%= campground.name %></h4>
                             </div>
-                            <p>
+                            <p class="mb-3 card-text">
                                 <a href="/campgrounds/<%= campground._id %>" class="btn">More Info <i
                                         class="fas fa-info-circle"></i></a>
                             </p>

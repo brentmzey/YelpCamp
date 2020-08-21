@@ -93,6 +93,7 @@ router.post("/", middleware.isLoggedIn, async (req, res) => {
     let newNotification = {
       username: req.user.username,
       campgroundId: campground.id,
+      campgroundName: campground.name,
       isCampgroundNotification: true,
     };
     for (const follower of user.followers) {

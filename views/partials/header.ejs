@@ -65,7 +65,8 @@
                             <% } %>
                             <% notifications.forEach(function(notification) { %>
                             <a class="dropdown-item" href="/notifications/<%= notification.id %>">
-                                <%= notification.username %> created a new campground
+                                <%= notification.username %> created
+                                <strong><em><%= notification.campgroundName %></em></strong>
                             </a>
                             <% }); %>
                         </div>
