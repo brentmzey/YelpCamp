@@ -21,7 +21,7 @@
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top navbar-light" id="mainNavbar">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light col-12" id="mainNavbar">
         <div class="container navbar-container d-flex flex-row">
 
             <a id="navbar-brand" class="navbar-brand" href="/">CampWI <i class="fas fa-tree"></i></a>
@@ -40,17 +40,39 @@
                 <ul id='navbar-right' class="navbar-nav ml-auto">
                     <% if(!currentUser){ %>
                     <li class="mr-2 nav-item <%= typeof page !== 'undefined' && page === 'login' ? 'active' : '' %>">
-                        <a class="nav-link" href="/login"><i class="fas fa-user-secret"></i></i> Howdy, stranger. LOGIN
-                            HERE!</a>
+                        <a class="nav-link" href="/login">LOGIN
+                            HERE, stranger! <i class="fas fa-user-secret"></i></i></a>
                     </li>
                     <li class="nav-item <%= typeof page !== 'undefined' && page === 'register' ? 'active' : '' %>">
                         <a class="nav-link" href="/register">Sign Up <i class="fas fa-user-plus"></i></a>
                     </li>
                     <% } else { %>
+                    <li
+                        class="nav-item dropdown pr-2 <%= typeof page !== 'undefined' && page === 'notifications' ? 'active' : '' %>">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                            aria-haspopup="true" aria-expanded="false">Notifications <span
+                                class="badge badge-light"><%= notifications.length %></span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/notifications">View past notifications <i
+                                    class="fas fa-bell"></i></a>
+                            <div class="dropdown-divider"></div>
+                            <% if (notifications.length < 1) { %>
+                            <a href="#" class="dropdown-item">No New Notifications <i class="fas fa-heart-broken"></i>
+                            </a>
+                            <% } else { %>
+                            <a href="#" class="dropdown-item">New Notifications Below: <i class="fas fa-bell"></i></a>
+                            <% } %>
+                            <% notifications.forEach(function(notification) { %>
+                            <a class="dropdown-item" href="/notifications/<%= notification.id %>">
+                                <%= notification.username %> created a new campground
+                            </a>
+                            <% }); %>
+                        </div>
+                    </li>
                     <li class="nav-item pr-2 <%= typeof page !== 'undefined' && page === 'user' ? 'active' : '' %>">
                         <a class="nav-link" href="/users/<%= currentUser._id %> "><i class="fas fa-user">
-                            </i> Signed In As
-                            <%= currentUser.username %>
+                            </i> <%= currentUser.username %>'s Profile
                             <% if (currentUser && currentUser.isAdmin) { %>
                             (Admin)
                             <% } %>

@@ -1,5 +1,6 @@
 // Add in Express router
-const Campground = require("../models/campground"),
+const Notification = require("../models/notification"),
+  Campground = require("../models/campground"),
   middleware = require("../middleware"),
   Comment = require("../models/comment"),
   express = require("express"),
@@ -73,7 +74,7 @@ router.get("/", (req, res) => {
 });
 
 // CREATE - add new campground to DB
-router.post("/", middleware.isLoggedIn, (req, res) => {
+router.post("/", middleware.isLoggedIn, async (req, res) => {
   // get data from form and add to campgrounds array
   let name = req.body.name;
   let price = req.body.price;
@@ -83,18 +84,41 @@ router.post("/", middleware.isLoggedIn, (req, res) => {
     id: req.user._id,
     username: req.user.username,
   };
-  let newCampground = { name: name, price: price, image: img, author: author, description: desc };
-  // Create a new campground and save to DB
-  Campground.create(newCampground, (err, newlyCreated) => {
-    if (err) {
-      req.flash("error", "Uhrmmm, we could not find that campground.");
-      console.log(err);
-    } else {
-      // Redirect back to campgrounds page
-      req.flash("success", "Successfully created your campground!");
-      res.redirect("/campgrounds");
+  let newCampground = { name, price, image: img, author, description: desc };
+
+  // Create a new campground with followers and save to DB
+  try {
+    let campground = await Campground.create(newCampground);
+    let user = await User.findById(req.user._id).populate("followers").exec();
+    let newNotification = {
+      username: req.user.username,
+      campgroundId: campground.id,
+      isCampgroundNotification: true,
+    };
+    for (const follower of user.followers) {
+      let notification = await Notification.create(newNotification);
+      follower.notifications.push(notification);
+      follower.save();
     }
-  });
+    //redirect back to campgrounds page
+    req.flash("success", "Successfully created your campground!");
+    res.redirect(`/campgrounds/${campground.id}`);
+    // if (err) {
+    //   req.flash("error", "Uhrmmm, we could not find that campground.");
+    //   console.log(err);
+    // } else {
+    //   // Redirect back to campgrounds page
+    //   req.flash("success", "Successfully created your campground!");
+    //   res.redirect("/campgrounds");
+    // }
+  } catch (err) {
+    console.log(err.message);
+    req.flash(
+      "error",
+      "Well this is awkward. Something went wrong creating that campground & notifications for your followers."
+    );
+    res.redirect("back");
+  }
 });
 
 // NEW - show form to create new campground
@@ -147,15 +171,6 @@ router.put("/:id", middleware.checkCampgroundOwnership, (req, res) => {
 });
 
 // DESTROY CAMPGROUND ROUTE
-// router.delete("/:id", (req, res) => {
-//   Campground.findByIdAndRemove(req.params.id, (err) => {
-//     if (err) {
-//       res.redirect("/campgrounds/" + req.params.id);
-//     } else {
-//       res.redirect("/campgrounds/");
-//     }
-//   });
-// });
 // NEWER SYNTAX FOR DESTROY CAMPGROUND (& associated comments) ROUTE
 router.delete("/:id", middleware.checkCampgroundOwnership, async (req, res) => {
   try {

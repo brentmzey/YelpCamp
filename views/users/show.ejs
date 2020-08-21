@@ -1,42 +1,47 @@
 <%- include("../partials/header") %>
 
-<div class="container-fluid user-profile-top row">
-    <div class="container col-sm-12 col-md-10 col-lg-8 user-profile-container mb-4">
+<div class="container-fluid user-profile-top">
+    <div class="container col-12 col-md-11 col-lg-10 user-profile-container mb-4">
         <div class="row justify-content-center">
-            <div class="col-sm-3 col-md-4 col-lg-4">
-                <div class="card user-profile-card p-0 align-items-center justify-content-center">
-                    <% if(user.avatar) { %>
-                    <div class="card-img-top user-avatar img-responsive center-block"
-                        style="background: url(<%= user.avatar %>) no-repeat center; background-size: cover; padding-top: 25rem;">
-                    </div> <% } else { %> <div class="card-img-top user-avatar"
-                        style="background: url(<%= '../../default_user_avatar_img.jpg' %>) no-repeat center; background-size: cover; padding-top: 25rem;">
-                    </div> <% } %>
-                    <div class="card-body pb-2">
-                        <div class="text-center card-title">
-                            <h4 class="pb-2"><strong><%= user.username %></strong></h4>
-                            <div class="card-subtitle">
-                                <p class="mb-1">CampWI Member since</p>
-                                <p class="mb-0"><em><%= user.joinDate.toString().substring(4, 15) %></em></p>
-                            </div>
+            <div
+                class="card user-profile-card mh-25 p-0 mx-5 mx-md-0 d-flex justify-content-center col-11 col-md-3 col-lg-2">
+                <% if(user.avatar) { %>
+                <div class="card-img-top user-avatar img-responsive center-block"
+                    style="background: url(<%= user.avatar %>) no-repeat center; background-size: cover; padding-top: 25rem;">
+                </div>
+                <% } else { %>
+                <div class="card-img-top user-avatar img-responsive center-block"
+                    style="background: url(<%= '../../default_user_avatar_img.jpg' %>) no-repeat center; background-size: cover; padding-top: 25rem;">
+                </div>
+                <% } %>
+                <div class="card-body pb-1">
+                    <div class="text-center card-title">
+                        <h4 class="pb-2"><strong><%= user.username %></strong></h4>
+                        <div class="card-subtitle">
+                            <p class="mb-1">CampWI Member since</p>
+                            <p class="mb-0"><em><%= user.joinDate.toString().substring(4, 15) %></em></p>
+                            <% if(currentUser && (currentUser._id != user.id) && !user.followers.includes(currentUser._id)) { %>
+                            <a class="btn mt-2" href="/follow/<%= user.id %>">Follow <%= user.username %></a>
+                            <% } %>
                         </div>
                     </div>
-                    <div class="card-footer user-about-me">
-                        <h4 class="text-center">About Me</h4>
-                        <hr class="about-me-hr">
-                        Some text for the users to write a statements about themselves.
-                        Tbh stumptown ramps cray, umami brooklyn poutine enamel pin bespoke squid. Plaid craft beer
-                        cronut,
-                        wayfarers pinterest
-                        kale chips tote bag messenger bag kinfolk church-key food truck.
-                    </div>
+                </div>
+                <div class="card-footer user-about-me">
+                    <h4 class="text-center">About Me</h4>
+                    <hr class="about-me-hr my-3">
+                    <p class="about-me"><%= user.aboutMe %></p>
                 </div>
             </div>
 
-            <div class="user-profile-campgrounds-section col-sm-9 col-md-6 col-lg-8">
+            <div class="user-profile-campgrounds-section mx-5 mx-md-0 col-11 col-md-8 col-lg-9">
                 <h3 class="text-center mb-3"><%= user.username %>'s Campgrounds <i class="fas fa-caravan"></i></h3>
-                <div class="row d-flex align-items-center justify-content-center">
+                <div class="row container align-items-center justify-content-center">
+                    <% if (campgrounds.length < 1) { %>
+                    <h3 class="my-5 text-center">You haven't created any campgrounds yet <i
+                            class="fas fa-heart-broken"></i></h3>
+                    <% } else { %>
                     <% campgrounds.forEach((campground) => { %>
-                    <div class="col-sm-12 col-md-6 col-lg-4 mb-3 mx-0">
+                    <div class="col-8 col-md-6 col-lg-3 p-0 my-2 ml-4">
                         <div class="card align-items-center justify-content-center">
                             <div class="card-img-top"
                                 style="background: url(<%= campground.image %>) no-repeat center; background-size: cover; padding-top:60%;">
@@ -50,7 +55,7 @@
                             </p>
                         </div>
                     </div>
-                    <% }) %>
+                    <% })}; %>
                 </div>
             </div>
         </div>

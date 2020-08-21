@@ -1,9 +1,9 @@
 <%- include("./partials/header") %>
 
 <div class="register-page-top">
-    <div class="wrapper mb-2">
+    <div class="wrapper col-12 col-md-11 col-lg-10 mb-2">
         <div class="card register-card">
-            <div class="card-heading"></div>
+            <div class="card-heading d-none d-md-table-cell"></div>
             <div class="card-body mx-1">
                 <form action="/register" method="POST" class="form-register">
                     <h1 class="text-center register-header pb-2">Sign Up!</h1>
@@ -32,19 +32,25 @@
                     <div class="form-group mb-2">
                         <label for="registerEmail" class="sr-only">Email</label>
                         <input class="form-control" type="email" name="email" id="registerEmail"
-                            placeholder="campWI@email.com (required)" aria-label="email" required>
+                            placeholder="campWI@email.com* (required)" aria-label="email" required>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-sm-6">
+                        <div class="form-group col-sm-6 mb-2">
                             <label for="registerImgURL" class="sr-only">Avatar Image URL</label>
                             <input class="form-control" type="text" name="avatar" id="registerImgURL"
                                 placeholder="Avatar Image URL" aria-label="avatar">
                         </div>
-                        <div class="form-group col-sm-6">
+                        <div class="form-group col-sm-6 mb-2">
                             <label for="registerAdminCode" class="sr-only">Admin Code</label>
                             <input class="form-control last-register-form-input" type="text" name="adminCode"
                                 id="registerAdminCode" placeholder="Admin Code (optional)" aria-label="adminCode">
                         </div>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="aboutMe" class="sr-only">About Me</label>
+                        <textarea class="form-control" rows="6" cols="30" name="aboutMe" id="aboutMe"
+                            placeholder="About Me... Describe favorite campground, park, etc... (required)"
+                            aria-label="aboutMe" required></textarea>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-lg btn-block">Register <i

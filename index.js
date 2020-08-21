@@ -12,9 +12,10 @@ const methodOverride = require("method-override"),
   app = express();
 
 // Set up mongoose SCHEMAS & MODELS
-const Campground = require("./models/campground"), // SCHEMA SET-UP: Set up base/default data schema
-  Comment = require("./models/comment"), // SCHEMA SET-UP: Set up base/default data schema
-  User = require("./models/user");
+const Notification = require("./models/notification");
+(Campground = require("./models/campground")), // SCHEMA SET-UP: Set up base/default data schema
+  (Comment = require("./models/comment")), // SCHEMA SET-UP: Set up base/default data schema
+  (User = require("./models/user"));
 
 // Require Routes
 const campgroundRoutes = require("./routes/campgrounds"),
@@ -70,9 +71,19 @@ passport.use(new LocalStrategy(User.authenticate())); // a method 'tacked-on' to
 passport.serializeUser(User.serializeUser()); // another method 'tacked-on' from "passportLocalMongoose"
 passport.deserializeUser(User.deserializeUser()); // another method 'tacked-on' from "passportLocalMongoose"
 
-app.use((req, res, next) => {
+app.use(async (req, res, next) => {
   // res.locals.bgPhoto = middleware.pickRandomPhoto();
   res.locals.currentUser = req.user; // makes "currentUser" available & defined for each template
+  if (req.user) {
+    try {
+      let user = await User.findById(req.user._id).populate("notifications", null, { isRead: false }).exec();
+      res.locals.notifications = user.notifications.reverse();
+    } catch (err) {
+      console.log(err.message);
+      req.flash("error", "Couldn't properly render notifications for you.");
+      res.redirect("back");
+    }
+  }
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
   next();

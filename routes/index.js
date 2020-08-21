@@ -1,5 +1,7 @@
 // Add in Express router
-const Campground = require("../models/campground"),
+const Notification = require("../models/notification"),
+  Campground = require("../models/campground"),
+  middleware = require("../middleware"),
   nodemailer = require("nodemailer"),
   passport = require("passport"),
   Comment = require("../models/comment"),
@@ -26,17 +28,18 @@ router.get("/register", (req, res) => {
 // Handle sign up logic
 router.post("/register", (req, res) => {
   let newUser = new User({
-    username: req.body.username,
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
+    username: req.body.username.trim(),
+    firstName: req.body.firstName.trim(),
+    lastName: req.body.lastName.trim(),
+    email: req.body.email.trim(),
     avatar: req.body.avatar,
+    aboutMe: req.body.aboutMe,
   });
   if (req.body.adminCode === process.env.adminCode) {
     newUser.isAdmin = true;
   }
   User.register(newUser, req.body.password, (err, user) => {
-    if (err) {
+    if (err || !user) {
       console.log(err);
       req.flash("error", err.message);
       return res.redirect("/register"); // if error, exit registration and re-display the register template
@@ -86,12 +89,75 @@ router.get("/users/:user_id", (req, res) => {
           req.flash("error", "Well this is awkward, we're missing some data.");
           return res.redirect("/campgrounds");
         }
-        res.render("users/show", { user: foundUser, campgrounds: campgrounds, page: "user" });
+        res.render("users/show", { user: foundUser, campgrounds, page: "user" });
       });
     // .catch((err) => {
     //   req.flash("error", "Uhmm, could not find that user.");
     // });
   });
+});
+
+// ===============================================
+//       HANDLING NOTIFICATIONS & FOLLOWERS
+// ===============================================
+
+// follow user
+router.get("/follow/:id", middleware.isLoggedIn, async (req, res) => {
+  try {
+    let user = await User.findById(req.params.id);
+    if (user.followers.includes(req.user._id)) {
+      // don't allow a user who already clicked to follow to click & follow again
+      req.flash("error", "You already requested to follow this user.");
+      return res.redirect("/users/req.params.id");
+    }
+    user.followers.push(req.user._id); // push current, logged in user's ID (who clicked 'follow') into the profile pages' user ID
+    user.save();
+    req.flash("success", "Successfully followed " + user.username + "!");
+    res.redirect("/users/" + req.params.id);
+  } catch (err) {
+    req.flash("error", "Uh oh, something went wrong on our end trying to add you as a follower... :/");
+    res.redirect("back");
+  }
+});
+
+// view all notifications
+router.get("/notifications", middleware.isLoggedIn, async (req, res) => {
+  try {
+    let user = await User.findById(req.user._id)
+      .populate({
+        path: "notifications",
+        options: { sort: { _id: -1 } },
+      })
+      .exec();
+    let numNewNotifications = await Notification.countDocuments({
+      $and: [{ username: user.username }, { isRead: false }],
+    });
+    let allNotifications = user.notifications;
+    let cntNotifications = await Notification.countDocuments({ username: user.username });
+    res.render("notifications/index", {
+      user,
+      allNotifications,
+      numNewNotifications,
+      cntNotifications,
+      page: "notifications",
+    });
+  } catch (err) {
+    req.flash("error", "Uh oh, we messed up trying to find some of your notifications... :/");
+    res.redirect("back");
+  }
+});
+
+// handle notification
+router.get("/notifications/:id", middleware.isLoggedIn, async (req, res) => {
+  try {
+    let notification = await Notification.findById(req.params.id);
+    notification.isRead = true;
+    notification.save();
+    res.redirect(`/campgrounds/${notification.campgroundId}`);
+  } catch (err) {
+    req.flash("error", err.message);
+    res.redirect("back");
+  }
 });
 
 // Forgot Password GET form route
@@ -105,6 +171,10 @@ router.post("/forgot", (req, res, next) => {
     [
       (done) => {
         crypto.randomBytes(20, (err, buf) => {
+          if (err || !buf) {
+            req.flash("error", "Uh oh, something went wrong with encrypting a password reset token.");
+            return res.redirect("back");
+          }
           let token = buf.toString("hex");
           done(err, token);
         });
@@ -165,7 +235,7 @@ router.post("/forgot", (req, res, next) => {
 // ===============================================
 router.get("/reset/:token", (req, res) => {
   User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, (err, user) => {
-    if (!user) {
+    if (!user || err) {
       req.flash("error", "Password reset token is invalid or has expired.");
       return res.redirect("/forgot");
     }
@@ -180,12 +250,16 @@ router.post("/reset/:token", (req, res) => {
         User.findOne(
           { resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } },
           (err, user) => {
-            if (!user || error) {
+            if (!user || err) {
               req.flash("error", "Password reset token is invalid or has expired.");
               return res.redirect("back");
             }
             if (req.body.password === req.body.confirm) {
               user.setPassword(req.body.password, (err) => {
+                if (err) {
+                  req.flash("error", "Well this is awkward, something went wrong setting your new password.");
+                  return res.redirect("back");
+                }
                 user.resetPasswordToken = undefined;
                 user.resetPasswordExpires = undefined;
 
@@ -221,16 +295,14 @@ router.post("/reset/:token", (req, res) => {
             " has been changed.\n",
         };
         smtpTransport.sendMail(mailOptions, (err) => {
-          if (err) {
-            req.flash("error", "Uh oh, something went wrong attempting to email you regarding password a change.");
-            res.redirect("/campgrounds");
-          }
           req.flash("success", "Your password has been updated.");
+          res.redirect("/campgrounds");
           done(err);
         });
       },
     ],
     (err) => {
+      console.log(err);
       req.flash("error", "Ooops, something went wrong on our end resetting your password.");
       res.redirect("/campgrounds");
     }

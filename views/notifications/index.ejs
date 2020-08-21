@@ -1,0 +1,59 @@
+<%- include("../partials/header") %>
+
+<div class="container-fluid user-profile-top row">
+    <div class="container col-11 col-md-10 col-lg-8 user-profile-container mb-4">
+        <div class="row justify-content-center">
+            <div class="col-sm-8 col-md-4 col-lg-3">
+                <div class="card user-profile-card p-0 align-items-center justify-content-center">
+                    <% if(user.avatar) { %>
+                    <div class="card-img-top user-avatar img-responsive center-block"
+                        style="background: url(<%= user.avatar %>) no-repeat center; background-size: cover; padding-top: 25rem;">
+                    </div>
+                    <% } else { %>
+                    <div class="card-img-top user-avatar"
+                        style="background: url(<%= '../../default_user_avatar_img.jpg' %>) no-repeat center; background-size: cover; padding-top: 25rem;">
+                    </div>
+                    <% } %>
+                    <div class="card-body pb-2">
+                        <div class="text-center card-title">
+                            <h4 class="pb-2"><strong><%= user.username %></strong></h4>
+                            <div class="card-subtitle">
+                                <p class="mb-1">CampWI Member since</p>
+                                <p class="mb-0"><em><%= user.joinDate.toString().substring(4, 15) %></em></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="user-profile-campgrounds-section col-11 col-sm-9 col-md-8">
+                <h3 class="text-center mb-3"><%= user.username %>'s Notifications <i class="fas fa-bell"></i></h3>
+                <div class="row d-flex align-items-center justify-content-center">
+                    <% if (cntNotifications < 1) { %>
+                    <h3 class="my-5">You don't have any notifications <i class="fas fa-sad-cry"></i></h3>
+                    <% } else { %>
+                    <% allNotifications.forEach((notification) => { %>
+                    <div class="col-12 col-md-6 col-lg-4 mb-3 mx-0">
+                        <div class="card align-items-center justify-content-center">
+                            <div class="text-center">
+                                <h4><%= notification.username %>
+                                    <% if(notification.isCampgroundNotification) { %>
+                                    created a new campground.
+
+                                </h4>
+                            </div>
+                            <p>
+                                <a href="/notifications/<%= notification._id %>" class="btn">Go to campground <i
+                                        class="fas fa-info-circle"></i></a>
+                            </p>
+                            <% } %>
+                        </div>
+                    </div>
+                    <% })}; %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include("../partials/footer") %>

@@ -123,9 +123,9 @@ const seeds = [
 async function seedDB() {
   try {
     //Remove all campgrounds
-    await Campground.deleteMany({}); // collection.remove({}); was deprecated
+    await Campground.deleteMany({ $or: [{ "author.username": "Brent Zey" }, { "author.username": "Severus Snape" }] }); // collection.remove({}); was deprecated
     // console.log("Camgrounds removed.");
-    await Comment.deleteMany({}); // collection.remove({}); was deprecated
+    await Comment.deleteMany({ $or: [{ "author.username": "Brent Zey" }, { "author.username": "Severus Snape" }] }); // collection.remove({}); was deprecated
     // console.log("Comments removed.");
     // loop through each of our data seeds in seeds array
     for (const seed of seeds) {

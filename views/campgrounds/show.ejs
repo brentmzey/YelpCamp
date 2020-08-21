@@ -9,18 +9,18 @@
                     <div class="card-img-top img-responsive center-block"
                         style="background: url(<%= campground.image %>) no-repeat center; background-size: cover; padding-top:60%;">
                     </div>
-                    <div class="card-body pb-0">
+                    <div class="card-body pb-3">
                         <h4 class="float-right">$<%= campground.price %>/NIGHT</h4>
                         <h4><%= campground.name %></h4>
-                        <p class="my-1">
+                        <h5 class="my-1 pb-2">
                             <em>Submitted by: <a
                                     href="/users/<%= campground.author.id %>"><%= campground.author.username %></a>,
                                 <%= moment(campground.createdAt).fromNow() %>
                             </em>
-                        </p>
+                        </h5>
                         <p class="mb-1"><%= campground.description %></p>
                         <% if(currentUser && campground.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin) { %>
-                        <div class="campground-edit-delete-btns pb-3">
+                        <div class="campground-edit-delete-btns pb-0 mb-0">
                             <a class="btn btn-sm btn-warning my-0 py-0" role="button"
                                 href="/campgrounds/<%= campground._id %>/edit">Edit</a>
                             <form class="delete-campground-form"
@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="card-footer mb-5 pb-1">
-                    <div class="text-right mb-3">
+                    <div class="text-right mb-2">
                         <!-- Setting up the add new comment button that is used for collapsing -->
                         <a class="btn float-right" role="button" data-toggle="collapse" href="#collapseComment"
                             aria-expanded="false" aria-controls="collapseComment">

@@ -66,6 +66,7 @@ html {
 
 @media screen and (min-width: 1400px) {
   .wrapper {
+    justify-self: center;
     margin: 0 auto;
     max-width: 960px;
     padding: auto 0;
@@ -130,6 +131,7 @@ html {
     text-shadow: none;
   }
   .wrapper {
+    justify-self: center;
     margin: 0 auto;
     max-width: 960px;
     padding: auto 0;
@@ -194,6 +196,7 @@ html {
     text-shadow: none;
   }
   .wrapper {
+    justify-self: center;
     margin: 0 auto;
     max-width: 880px;
     padding: auto 0;
@@ -258,6 +261,7 @@ html {
     text-shadow: none;
   }
   .wrapper {
+    justify-self: center;
     margin: 0 auto;
     max-width: 720px;
     padding: auto 0;
@@ -322,6 +326,7 @@ html {
     text-shadow: none;
   }
   .wrapper {
+    justify-self: center;
     margin: 0 auto;
     max-width: 575px;
     padding: auto 0;
@@ -387,9 +392,9 @@ html {
     text-shadow: none;
   }
   .wrapper {
+    justify-self: center;
     margin: 0 auto;
-    margin-bottom: 0.5rem;
-    max-width: 555px;
+    max-width: 320px;
     padding: auto 0;
   }
   .login-card,
@@ -420,7 +425,7 @@ html {
     border-radius: 10px;
     margin: auto auto;
     width: 100%;
-    min-width: 800px;
+    min-width: 100px;
     display: table;
     overflow: hidden;
     background: rgba(240, 235, 210, 1);
@@ -485,7 +490,7 @@ html {
   background-color: rgba(240, 235, 210, 1);
   color: rgba(0, 71, 27, 1);
   border: 1.5px solid rgba(0, 125, 197, 1);
-  font-size: 1.5rem;
+  font-size: 1.35rem;
 }
 
 #jumbotron .new-campground-btn:hover,
@@ -495,7 +500,7 @@ html {
   border: 1.5px solid rgba(0, 125, 197, 1);
   outline: 7px auto rgba(0, 125, 197, 1);
   -webkit-text-stroke: rgba(0, 125, 197, 1) 0.4px;
-  font-size: 1.5rem;
+  font-size: 1.35rem;
 }
 /* ---------------------------------------------- */
 /*      SEARCH FORM STYLING ON THE INDEX PAGE     */
@@ -504,8 +509,8 @@ html {
   background: rgba(240, 235, 210, 1);
   color: rgba(0, 71, 27, 1);
   border: 1.5px solid rgba(0, 125, 197, 1);
-  min-width: 375px;
-  min-height: 60px;
+  min-width: 325px;
+  min-height: 40px;
   line-height: 3;
   font-size: 0.85rem;
   font-weight: normal;
@@ -587,7 +592,7 @@ html {
 
 .campgrounds-index-show-section .card {
   min-height: 300px;
-  max-height: 450px;
+  max-height: 350px;
   max-width: 315px;
   /* "Under the Lake" CSS Gradient design from "uigradients.com" */
   background: #093028; /* fallback for old browsers */
@@ -597,7 +602,7 @@ html {
 
 .campgrounds-index-show-section .card > .card-body > h5 {
   color: rgba(240, 235, 210, 1);
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   font-family: Bebas Neue, sans-serif;
   -webkit-text-stroke: rgba(0, 125, 197, 1) 0.4px;
 }
@@ -672,6 +677,7 @@ html {
 }
 
 .navbar .nav-item > .nav-link,
+.navbar .nav-item .dropdown-menu,
 .navbar .nav-item.active > .nav-link:hover {
   background: rgba(240, 235, 210, 1);
   color: #226349;
@@ -681,6 +687,10 @@ html {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
+}
+
+.navbar .dropdown-divider {
+  background: rgba(0, 71, 27, 1);
 }
 
 .navbar .navbar-brand:hover,
@@ -746,6 +756,8 @@ html {
 }
 
 .navbar.scrolled .nav-item > .nav-link,
+.navbar.scrolled .nav-item .dropdown-menu,
+.navbar.scrolled .nav-item .dropdown-menu .dropdown-item,
 .navbar.scrolled .nav-item.active > .nav-link:hover {
   background: #226349;
   color: rgba(240, 235, 210, 1);
@@ -755,6 +767,10 @@ html {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
+}
+
+.navbar.scrolled .dropdown-divider {
+  background: rgba(240, 235, 210, 1);
 }
 
 .navbar.scrolled .navbar-brand:hover,
@@ -1019,7 +1035,7 @@ html {
 
 .new-campground-card .card-body .form-inline .form-control,
 .campground-edit-card .card-body .form-inline .form-control {
-  min-width: 405px;
+  min-width: 380px;
   max-width: 100%;
 }
 
@@ -1033,7 +1049,7 @@ html {
 /*   CAMPGROUND & COMMENT EDIT AND DELETE BUTTON STYLING    */
 /* ======================================================== */
 
-.show-page-top .show-page-first-row .card-body .campground-edit-delete-btns > .btn-warning,
+/* .show-page-top .show-page-first-row .card-body .campground-edit-delete-btns > .btn-warning,
 .show-page-top .show-page-first-row .card-footer .comment-edit-delete-btns > .btn-warning {
   opacity: 0;
   color: rgba(240, 235, 210, 1);
@@ -1096,40 +1112,43 @@ html {
   -ms-transition: 0.08s linear;
   -o-transition: 0.08s linear;
   -webkit-text-stroke-color: transparent;
-}
+} */
 
-.show-page-top .show-page-first-row .card-body .campground-edit-delete-btns a:hover,
-.show-page-top .show-page-first-row .card-footer .comment-edit-delete-btns a:hover {
-  /* need the anchor tag background inside a button to be transparent when hovered over */
-  background-color: transparent;
+/* .show-page-top .show-page-first-row .card-body .campground-edit-delete-btns a:hover,
+.show-page-top .show-page-first-row .card-footer .comment-edit-delete-btns a:hover { */
+/* need the anchor tag background inside a button to be transparent when hovered over */
+/* background-color: transparent;
   opacity: 1;
   color: rgba(240, 235, 210, 1);
   text-decoration: none;
   -webkit-text-stroke-color: transparent;
-}
+} */
 
 /* ++++++++++++++++++++++++++++++++++++++++++++++++ */
 /*      IF TOUCHSCREEN OR NO MOUSE, DISPLAY         */
 /*     EDIT & DELETE BUTTONS W/OUT ANIMATION        */
 /* ++++++++++++++++++++++++++++++++++++++++++++++++ */
 
-@media not (pointer: fine) {
-  .show-page-top .show-page-first-row .card-body .campground-edit-delete-btns > .btn-warning,
-  .show-page-top .show-page-first-row .card-footer .comment-edit-delete-btns > .btn-warning {
-    opacity: 1;
-    color: rgba(240, 235, 210, 1);
-    background-color: #f0ad4e;
-    border-color: #eea236;
-    outline: 0.5px auto #eea236;
-  }
-  .show-page-top .show-page-first-row .card-body .campground-edit-delete-btns > .delete-campground-form > .btn-danger,
-  .show-page-top .show-page-first-row .card-footer .comment-edit-delete-btns > .delete-comment-form > .btn-danger {
-    opacity: 1;
-    color: rgba(240, 235, 210, 1);
-    background-color: #d9534f;
-    border-color: #d43f3a;
-    outline: 0.5px auto #d43f3a;
-  }
+.show-page-top .show-page-first-row .card-body .campground-edit-delete-btns > .btn-warning,
+.show-page-top .show-page-first-row .card-footer .comment-edit-delete-btns > .btn-warning {
+  opacity: 1;
+  color: rgba(240, 235, 210, 1);
+  background-color: #f0ad4e;
+  border-color: #eea236;
+  outline: 0.5px auto #eea236;
+  text-decoration: none;
+  -webkit-text-stroke-color: transparent;
+}
+
+.show-page-top .show-page-first-row .card-body .campground-edit-delete-btns > .delete-campground-form > .btn-danger,
+.show-page-top .show-page-first-row .card-footer .comment-edit-delete-btns > .delete-comment-form > .btn-danger {
+  opacity: 1;
+  color: rgba(240, 235, 210, 1);
+  background-color: #d9534f;
+  border-color: #d43f3a;
+  outline: 0.5px auto #d43f3a;
+  text-decoration: none;
+  -webkit-text-stroke-color: transparent;
 }
 
 /* ======================================================== */
@@ -1295,15 +1314,15 @@ div.col-md-9 div.thumbnail div.caption h4.pull-right + h4 {
 
 .user-profile-top > .user-profile-container {
   padding-top: 20px;
-  margin-bottom: 50px;
+  margin-bottom: auto;
   border-radius: 15px;
   /* max-height: 850px; */
   background: rgba(240, 235, 210, 1);
   color: rgba(0, 71, 27, 1);
   border: 1.5px solid rgba(0, 71, 27, 1);
-  -webkit-box-shadow: -8px -8px 25px 10px rgba(0, 125, 197, 1);
-  -moz-box-shadow: -8px -8px 25px 10px rgba(0, 125, 197, 1);
-  box-shadow: -8px -8px 25px 10px rgba(0, 125, 197, 1);
+  -webkit-box-shadow: 0px 0px 25px 15px rgba(0, 125, 197, 1);
+  -moz-box-shadow: 0px 0px 25px 15px rgba(0, 125, 197, 1);
+  box-shadow: 0px 0px 25px 15px rgba(0, 125, 197, 1);
 }
 
 .user-profile-card {
@@ -1312,19 +1331,20 @@ div.col-md-9 div.thumbnail div.caption h4.pull-right + h4 {
   background: -webkit-linear-gradient(to right, #237a57, #093028); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #237a57, #093028);
   color: rgba(240, 235, 210, 1);
-  max-width: 20rem;
-  min-width: 320px;
-  /* max-height: 15rem; */
+  /* max-width: 20rem; */
   margin: 0;
-  margin-left: 5px;
   margin-bottom: 20px;
   border: none;
+}
+
+.user-profile-card .card-img-top {
+  border: 0.5px solid rgba(0, 71, 27, 1);
 }
 
 .user-profile-card .card-footer {
   background: rgba(240, 235, 210, 1);
   color: rgba(0, 71, 27, 1);
-  max-width: inherit;
+  width: 100%;
   border: 0.5px solid rgba(0, 71, 27, 1);
 }
 

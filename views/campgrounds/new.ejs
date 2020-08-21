@@ -1,20 +1,22 @@
 <%- include("../partials/header") %>
 
-<div class="new-campground-page-top mb-3">
-    <div class="wrapper">
-        <div class="card new-campground-card">
-            <div class="card-heading flex-sm-wrap flex-lg-nowrap" style="background: url(<%= bgPhoto %>) top left/cover no-repeat; width: 29.1%;
-  display: table-cell;"></div>
+<div class="new-campground-page-top">
+    <div class="wrapper col-12 col-md-11 col-lg-10">
+        <div class="card new-campground-card register-card">
+            <div class="card-heading d-none d-md-table-cell" style="background: url(<%= bgPhoto %>) top left/cover no-repeat; width: 29.1%;
+            display: table-cell;">
+            </div>
             <div class="card-body mx-1">
-                <form action="/campgrounds" method="POST" class="form-register">
+                <form action="/campgrounds" method="POST" class="justify-content-center form-row">
                     <h1 class="text-center new-campground-header pb-3">Create a New Campground! <i
-                            class="fas fa-campground"></i></h1>
-                    <div class="form-group">
+                            class="fas fa-campground"></i>
+                    </h1>
+                    <div class="form-group col-12 col-sm-10 col-md-8">
                         <label for="newCampgroundName" class="sr-only">Campground Name</label>
                         <input class="form-control col-xs-12" type="text" name="name" id="newCampgroundName"
                             placeholder="Campground Name" required autofocus>
                     </div>
-                    <div class="form-inline form-group">
+                    <div class="form-inline form-group col-12 col-sm-10 col-md-8">
                         <span class="input-group-prepend col-xs-2" id="dollar-sign-addon">
                             <div class="input-group-text">$</div>
                         </span>
@@ -25,17 +27,17 @@
                             <div class="input-group-text">/NIGHT</div>
                         </span>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-12 col-sm-10 col-md-8">
                         <label for="newCampgroundImgURL" class="sr-only">Campground Image URL</label>
                         <input class="form-control col-xs-12" type="text" name="image" id="newCampgroundImgURL"
                             placeholder="Campground Image URL" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-12 col-sm-10 col-md-8">
                         <label for="newCampgroundDescription" class="sr-only">Campground Description</label>
                         <textarea class="form-control col-xs-12" name="description" id="newCampgroundDescription"
                             placeholder="Campground Description"></textarea>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-12 col-sm-10 col-md-8">
                         <button class="btn btn-lg btn-default btn-block col-xs-12">Submit!</button>
                     </div>
                 </form>
