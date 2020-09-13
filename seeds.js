@@ -57,6 +57,19 @@ const seeds = [
     },
   },
   {
+    name: "Devil's Island",
+    createdAt: moment().year(2020).month(7).date(2),
+    price: "5",
+    image:
+      "https://scontent-ort2-1.xx.fbcdn.net/v/t1.0-9/118699950_10157255503807676_2857703542861147356_n.jpg?_nc_cat=1&_nc_sid=8bfeb9&_nc_ohc=4WWYN5FeNccAX-t1lgm&_nc_ht=scontent-ort2-1.xx&oh=7755f0f1f45435da30750294e24ed076&oe=5F7B330B",
+    description:
+      "Chia subway tile brunch blue bottle offal sriracha master cleanse messenger bag PBR&B. Letterpress hashtag vaporware tote bag cornhole vexillologist. Tacos jianbing irony, offal fashion axe leggings yuccie 3 wolf moon air plant locavore freegan. Ramps truffaut la croix, bitters dreamcatcher glossier cornhole cold-pressed fam keffiyeh tote bag.",
+    author: {
+      id: "5f3c2a3cc5ba1dc08c5cee3c",
+      username: "Brent Zey",
+    },
+  },
+  {
     name: "High Cliff State Park",
     createdAt: moment().year(2020).month(7).date(2),
     price: "0",
