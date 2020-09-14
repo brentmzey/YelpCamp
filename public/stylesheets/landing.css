@@ -62,22 +62,22 @@ a {
 }
 
 .slideshow li:nth-child(1) {
-  background-image: url("../bg_photos/12-foot-falls.jpg");
+  background-image: url(https://i.imgur.com/Gh7b1W9.jpg);
 }
 .slideshow li:nth-child(2) {
-  background-image: url("../bg_photos/apostle-islands-wisconsin.jpg");
+  background-image: url(https://i.imgur.com/mlAzbRE.jpg);
   animation-delay: 10s;
 }
 .slideshow li:nth-child(3) {
-  background-image: url("../bg_photos/ice_age_trail_dells_of_the_eau_claire.jpg");
+  background-image: url(https://i.imgur.com/gpHptU2.jpg);
   animation-delay: 20s;
 }
 .slideshow li:nth-child(4) {
-  background-image: url("../bg_photos/cave-point-county-park-door-county-wisconsin-lake-michigan.jpg");
+  background-image: url(https://i.imgur.com/Xiumsy3.jpg);
   animation-delay: 30s;
 }
 .slideshow li:nth-child(5) {
-  background-image: url("../bg_photos/Devils_Lake_State_Park_Wisconsin.jpg");
+  background-image: url(https://i.imgur.com/3xRYxIi.jpg);
   animation-delay: 40s;
 }
 

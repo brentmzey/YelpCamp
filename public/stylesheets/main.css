@@ -870,29 +870,25 @@ html {
 }
 
 .register-page-top .card-heading {
-  background: url(https://scontent-ort2-1.xx.fbcdn.net/v/t1.0-9/46707691_271563216874539_3783669173331165184_o.jpg?_nc_cat=101&_nc_sid=9267fe&_nc_ohc=hw2nCmv2mOMAX-VPhlD&_nc_ht=scontent-ort2-1.xx&oh=cc71c4e5ee2e7f3c53a7644cfbd4e487&oe=5F5C53A7)
-    top left/cover no-repeat; /* https://img-9gag-fun.9cache.com/photo/apmgYnB_700bwp.webp */
+  background: url(https://i.imgur.com/CUB3VKR.jpg) top left/cover no-repeat; /* https://img-9gag-fun.9cache.com/photo/apmgYnB_700bwp.webp */
   width: 29.1%;
   display: table-cell;
 }
 
 .login-page-top .card-heading {
-  background: url(https://scontent-ort2-1.xx.fbcdn.net/v/t1.0-9/88968636_10157155404905686_3395909634538602496_o.jpg?_nc_cat=111&_nc_sid=730e14&_nc_ohc=T_ja9MBo3ekAX9Eq9rm&_nc_ht=scontent-ort2-1.xx&oh=8b6dd449ae27267180f7a194de930a5f&oe=5F5A9ED1)
-    top left/cover no-repeat; /*  https://i.pinimg.com/originals/15/50/f3/1550f3a6ced45d08de238e1b4070331b.jpg */
+  background: url(https://i.imgur.com/zq9KmHj.jpg) top left/cover no-repeat; /*  https://i.pinimg.com/originals/15/50/f3/1550f3a6ced45d08de238e1b4070331b.jpg */
   width: 29.1%;
   display: table-cell;
 }
 
 .forgot-password-page-top .card-heading {
-  background: url(https://www.baypointinn.com/wp-content/uploads/2016/10/hwy-42-door-county-img4456.jpg) top left/cover
-    no-repeat;
+  background: url(https://i.imgur.com/hAkLpwU.jpg) top left/cover no-repeat;
   width: 45%;
   display: table-cell;
 }
 
 .reset-password-page-top .card-heading {
-  background: url(https://www.baypointinn.com/wp-content/uploads/2016/10/hwy-42-door-county-img4456.jpg) top left/cover
-    no-repeat;
+  background: url(https://i.imgur.com/hAkLpwU.jpg) top left/cover no-repeat;
   width: 45%;
   display: table-cell;
 }
